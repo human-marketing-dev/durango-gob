@@ -6,61 +6,55 @@ module.exports = {
   ],
   theme: {
     extend: {
-        screens: {
-            sm: "640px",
-            md: "768px",
-            lg: "1024px",
-            xl: "1280px",
-    },
-      fontFamily: {
-        sans: ["Inter", "sans-serif"], // cambia por tu font
+      screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
       },
-
-      fontSize: {
-        // Headings
-        "h1": ["64px", { lineHeight: "1.1" }], // 404 Title
-        "h2": ["48px", { lineHeight: "1.2" }], // Hero Headline
-        "h3": ["36px", { lineHeight: "1.3" }], // Primary
-        "h4": ["28px", { lineHeight: "1.4" }], // Secondary
-        "h5": ["22px", { lineHeight: "1.5" }], // Subtitle
-        "h6": ["18px", { lineHeight: "1.5" }], // Box Title
-
-        // Text
-        "body": ["16px", { lineHeight: "1.6" }],
-        "button": ["14px", { lineHeight: "1.4" }],
-        "overline": ["12px", { lineHeight: "1.3", letterSpacing: "0.1em" }],
+      fontFamily: {
+        monument: ["var(--font-monument)", "Georgia", "serif"],
+        sans:     ["var(--font-open-sans)", "Helvetica", "sans-serif"],
+        lato:     ["var(--font-lato)", "Arial", "sans-serif"],
+        poppins:  ["var(--font-poppins)", "Arial", "sans-serif"],
+      },
+      maxWidth: {
+        content: "1200px",
+      },
+      letterSpacing: {
+        "widest-2":   "2px",
+        "widest-15":  "1.5px",
+        "widest-125": "1.25px",
+        "wide-08":    "0.8px",
+        "wide-05":    "0.5px",
+        "wide-03":    "0.3px",
+      },
+      boxShadow: {
+        sm: "0 1px 4px rgba(0,0,0,0.08)",
+        md: "0 2px 12px rgba(0,0,0,0.10)",
+        lg: "0 4px 24px rgba(0,0,0,0.14)",
+      },
+      borderRadius: {
+        none: "0px",
+        DEFAULT: "0px",
+        sm: "0px",
+        md: "0px",
+        lg: "0px",
+        xl: "0px",
+        full: "9999px",
       },
     },
     colors: {
-        primary: {
-          DEFAULT: "#0A0A0A",
-          light: "#333333",
-          dark: "#000000",
-        },
-
-        secondary: {
-          DEFAULT: "#6B7280",
-          light: "#9CA3AF",
-          dark: "#4B5563",
-        },
-
-        neutral: {
-          50: "#F9FAFB",
-          100: "#F3F4F6",
-          200: "#E5E7EB",
-          300: "#D1D5DB",
-          400: "#9CA3AF",
-          500: "#6B7280",
-          600: "#4B5563",
-          700: "#374151",
-          800: "#1F2937",
-          900: "#111827",
-        },
-
-        black: "#000000",
-        white: "#FFFFFF",
-        transparent: "transparent",
-      },
+      primary:    "#1B1A19",
+      secondary:  "#B8C0B8",
+      accent:     "#4A535A",
+      "blue-el":  "#9AA1A6",
+      "blue-bg":  "#CACECF",
+      overlay:    "#666968",
+      white:      "#FFFFFF",
+      black:      "#000000",
+      transparent: "transparent",
+    },
   },
   plugins: [],
 };

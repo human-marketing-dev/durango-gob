@@ -1,24 +1,151 @@
+@font-face {
+  font-family: 'All Rounder Monument';
+  src: url('/fonts/AllrounderMonument-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'All Rounder Monument';
+  src: url('/fonts/AllrounderMonument-Book.woff2') format('woff2');
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'All Rounder Monument';
+  src: url('/fonts/AllrounderMonument-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Variables opcionales */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-monument: 'All Rounder Monument', Georgia, serif;
+  /* Design system color tokens */
+  --color-primary:       #1B1A19;
+  --color-secondary:     #B8C0B8;
+  --color-accent:        #4A535A;
+  --color-blue-el:       #9AA1A6;
+  --color-blue-bg:       #CACECF;
+  --color-bg:            #FFFFFF;
+  --color-overlay:       #666968;
+
+  /* Shadow scale */
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.08);
+  --shadow-md: 0 2px 12px rgba(0,0,0,0.10);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,0.14);
+
+  /* Spacing (8px base) */
+  --space-1:  4px;  --space-2:  8px;  --space-3:  12px; --space-4:  16px;
+  --space-5:  24px; --space-6:  32px; --space-7:  48px; --space-8:  64px;
+  --space-9:  96px; --space-10: 128px;
 }
 
-/* Dark mode opcional */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    font-family: var(--font-lato), Lato, Arial, sans-serif;
+    color: var(--color-primary);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
   }
+
+  body { margin: 0; }
+
+  a {
+    color: inherit;
+    transition: opacity 150ms ease-out;
+  }
+  a:hover { opacity: 0.7; }
 }
 
-/* Base styles */
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Typographic utility classes ── */
+@layer utilities {
+  .t-hero {
+    font-family: var(--font-open-sans), sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5.3125rem);
+    font-weight: 300;
+    line-height: 1em;
+    letter-spacing: -1.5px;
+  }
+
+  .t-display {
+    font-family: var(--font-monument), Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1em;
+    letter-spacing: 0.5px;
+  }
+
+  .t-display-sm {
+    font-family: var(--font-monument), Georgia, serif;
+    font-size: clamp(1.25rem, 2vw, 2rem);
+    font-weight: 400;
+    line-height: 1.2em;
+    letter-spacing: 0.3px;
+  }
+
+  .t-subtitle {
+    font-family: var(--font-open-sans), sans-serif;
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.5em;
+  }
+
+  .t-box-title {
+    font-family: var(--font-open-sans), sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 500;
+    line-height: 1.2em;
+    letter-spacing: 0.15px;
+  }
+
+  .t-body {
+    font-family: var(--font-lato), Arial, sans-serif;
+    font-size: 1.0625rem; /* 17px */
+    font-weight: 400;
+    line-height: 1.5em;
+    letter-spacing: 0.5px;
+  }
+
+  .t-accent {
+    font-family: var(--font-lato), Arial, sans-serif;
+    font-size: 0.9375rem; /* 15px */
+    font-weight: 500;
+    line-height: 1em;
+    letter-spacing: 1.25px;
+    color: var(--color-accent);
+  }
+
+  .t-label {
+    font-family: var(--font-lato), Arial, sans-serif;
+    font-size: 0.6875rem; /* 11px */
+    font-weight: 400;
+    line-height: 1.5em;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-overlay);
+  }
+
+  .t-nav {
+    font-family: var(--font-lato), Arial, sans-serif;
+    font-size: 0.8125rem; /* 13px */
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  /* Shared section padding */
+  .section-padding {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+    padding-left: var(--space-7);
+    padding-right: var(--space-7);
+  }
 }
