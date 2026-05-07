@@ -7,12 +7,14 @@ export default function Footer() {
     <footer className="bg-primary" style={{ borderTop: '1px solid #4A535A', fontFamily: 'var(--font-lato)' }}>
 
       {/* Main grid */}
-      <div className="max-w-content mx-auto px-12 py-14">
+      <div className="max-w-content mx-auto site-px py-14">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
 
           {/* Brand column */}
           <div className="md:col-span-1 flex flex-col gap-4">
-            <Image src="/logo-blanco.webp" alt="PJDGO" width={52} height={52} style={{ height: '52px', width: 'auto', opacity: 0.9 }} />
+            <div style={{ position: 'relative', width: '52px', height: '52px', flexShrink: 0, opacity: 0.9 }}>
+              <Image src="/logo-blanco.webp" alt="PJDGO" fill sizes="52px" style={{ objectFit: 'contain' }} />
+            </div>
             <p
               className="text-white uppercase"
               style={{ fontFamily: 'var(--font-open-sans)', fontSize: '13px', fontWeight: '300', letterSpacing: '1.5px', lineHeight: '1.6em' }}
@@ -58,7 +60,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div style={{ borderTop: '1px solid #4A535A' }}>
         <div
-          className="max-w-content mx-auto px-12 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
+          className="max-w-content mx-auto site-px py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
         >
           <span className="text-overlay" style={{ fontSize: '11px', letterSpacing: '0.3px' }}>
             © {new Date().getFullYear()} Poder Judicial del Estado de Durango. Todos los derechos reservados.

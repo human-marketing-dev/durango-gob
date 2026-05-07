@@ -19,7 +19,7 @@ module.exports = {
         poppins:  ["var(--font-poppins)", "Arial", "sans-serif"],
       },
       maxWidth: {
-        content: "1200px",
+        content: "1440px",
       },
       letterSpacing: {
         "widest-2":   "2px",

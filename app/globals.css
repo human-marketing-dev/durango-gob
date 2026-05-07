@@ -26,6 +26,8 @@
 
 :root {
   --font-monument: 'All Rounder Monument', Georgia, serif;
+  /* Horizontal site padding — scales from 12px on mobile to 24px on desktop */
+  --site-pad: clamp(16px, 2.5vw, 35px);
   /* Design system color tokens */
   --color-primary:       #1B1A19;
   --color-secondary:     #B8C0B8;
@@ -141,11 +143,17 @@
     text-transform: uppercase;
   }
 
-  /* Shared section padding */
+  /* Consistent horizontal site padding */
+  .site-px {
+    padding-left: var(--site-pad);
+    padding-right: var(--site-pad);
+  }
+
+  /* Section vertical rhythm + horizontal padding */
   .section-padding {
     padding-top: var(--space-8);
     padding-bottom: var(--space-8);
-    padding-left: var(--space-7);
-    padding-right: var(--space-7);
+    padding-left: var(--site-pad);
+    padding-right: var(--site-pad);
   }
 }

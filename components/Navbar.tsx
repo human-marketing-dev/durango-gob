@@ -21,7 +21,7 @@ function MegaPanel({ entry, onClose }: { entry: NavEntry; onClose: () => void })
       className="absolute left-0 right-0 top-full z-50 bg-white border-t-2 border-primary shadow-lg"
       style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
     >
-      <div className="max-w-content mx-auto px-12 py-10">
+      <div className="max-w-content mx-auto site-px py-10">
         <div className={`grid ${colClass} gap-10`}>
           {sections.map(section => (
             <div key={section.href}>
@@ -168,19 +168,33 @@ function MobileItem({ entry }: { entry: NavEntry | NavSection }) {
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const desktopSearchRef = useRef<HTMLInputElement>(null)
+  const mobileSearchRef  = useRef<HTMLInputElement>(null)
   const headerRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
 
-  const closeAll = useCallback(() => { setOpenMenu(null) }, [])
+  const closeAll    = useCallback(() => { setOpenMenu(null) }, [])
+  const closeSearch = useCallback(() => { setSearchOpen(false) }, [])
 
   useEffect(() => {
     closeAll()
     setMobileOpen(false)
+    setSearchOpen(false)
   }, [pathname, closeAll])
 
   useEffect(() => {
+    if (!searchOpen) return
+    const isMobile = window.innerWidth < 1024
+    const ref = isMobile ? mobileSearchRef : desktopSearchRef
+    // Small delay so the width animation has started before focus
+    const t = setTimeout(() => ref.current?.focus(), 50)
+    return () => clearTimeout(t)
+  }, [searchOpen])
+
+  useEffect(() => {
     if (!openMenu) return
-    function onKey(e: KeyboardEvent) { if (e.key === 'Escape') closeAll() }
+    function onKey(e: globalThis.KeyboardEvent) { if (e.key === 'Escape') closeAll() }
     function onOutside(e: MouseEvent) {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) closeAll()
     }
@@ -192,6 +206,13 @@ export default function Navbar() {
     }
   }, [openMenu, closeAll])
 
+  useEffect(() => {
+    if (!searchOpen) return
+    function onKey(e: globalThis.KeyboardEvent) { if (e.key === 'Escape') closeSearch() }
+    document.addEventListener('keydown', onKey)
+    return () => { document.removeEventListener('keydown', onKey) }
+  }, [searchOpen, closeSearch])
+
   const activeEntry   = openMenu ? nav.find(e => e.href === openMenu) : null
   const isMegaActive  = activeEntry?.children?.some(isNavSection) ?? false
 
@@ -200,7 +221,7 @@ export default function Navbar() {
 
       {/* Top bar */}
       <div className="bg-primary">
-        <div className="max-w-content mx-auto px-12 flex items-center justify-between py-1.5">
+        <div className="max-w-content mx-auto site-px flex items-center justify-between py-1.5">
           <span className="font-lato text-blue-el" style={{ fontSize: '11px', letterSpacing: '0.8px' }}>
             Gobierno del Estado de Durango
           </span>
@@ -218,94 +239,192 @@ export default function Navbar() {
       </div>
 
       {/* Main nav bar */}
-      <div className="max-w-content mx-auto px-12 flex items-center justify-between" style={{ height: '72px' }}>
+      <div className="max-w-content mx-auto site-px flex items-center justify-between" style={{ height: '72px' }}>
 
-        {/* Brand */}
-        <Link href="/" className="flex items-center gap-3.5" style={{ textDecoration: 'none' }}>
-          <Image src="/logo-negro.webp" alt="PJDGO" width={44} height={44} style={{ height: '44px', width: 'auto' }} />
-          <div className="flex flex-col gap-px">
-            <span
-              className="font-monument text-primary uppercase"
-              style={{ fontSize: '15px', fontWeight: '400', letterSpacing: '2px' }}
-            >
-              Poder Judicial
-            </span>
-            <span
-              className="font-lato text-overlay uppercase"
-              style={{ fontSize: '9px', fontWeight: '400', letterSpacing: '2px' }}
-            >
-              del Estado de Durango
-            </span>
-          </div>
+        {/* Brand — always visible */}
+        <Link href="/" className="flex items-center shrink-0" style={{ textDecoration: 'none' }}>
+          <Image src="/logo-horizontal.webp" alt="Poder Judicial del Estado de Durango" width={220} height={52} style={{ height: '48px', width: 'auto' }} />
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center">
-          {nav.map(entry => {
-            const isOpen     = openMenu === entry.href
-            const isActive   = pathname === entry.href || pathname.startsWith(entry.href + '/')
-            const hasKids    = (entry.children?.length ?? 0) > 0
-            const isMega     = entry.children?.some(isNavSection) ?? false
-            const activeStyle = isOpen || isActive
-              ? { borderBottom: '2px solid #1B1A19' }
-              : { borderBottom: '2px solid transparent' }
+        {/* ── Desktop right side ── */}
+        <div className="hidden lg:flex items-center">
 
-            return (
-              <div key={entry.href} className={isMega ? '' : 'relative'}>
-                {hasKids ? (
-                  <button
-                    onClick={() => setOpenMenu(isOpen ? null : entry.href)}
-                    aria-expanded={isOpen}
-                    className="t-nav flex items-center gap-1 text-primary bg-transparent border-none cursor-pointer px-3.5 py-2 hover:opacity-70 transition-opacity"
-                    style={activeStyle}
-                  >
-                    {entry.label}
-                    <svg
-                      width="10" height="10" viewBox="0 0 24 24"
-                      fill="none" stroke="currentColor" strokeWidth="2.5"
-                      style={{ transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 150ms' }}
+          {/* Nav items — slide right + fade out on search open */}
+          <nav
+            className="flex items-center"
+            style={{
+              opacity:       searchOpen ? 0 : 1,
+              transform:     searchOpen ? 'translateX(10px)' : 'translateX(0)',
+              transition:    'opacity 200ms ease, transform 200ms ease',
+              pointerEvents: searchOpen ? 'none' : 'auto',
+            }}
+          >
+            {nav.map(entry => {
+              const isOpen    = openMenu === entry.href
+              const isActive  = pathname === entry.href || pathname.startsWith(entry.href + '/')
+              const hasKids   = (entry.children?.length ?? 0) > 0
+              const isMega    = entry.children?.some(isNavSection) ?? false
+              const activeStyle = isOpen || isActive
+                ? { borderBottom: '2px solid #1B1A19' }
+                : { borderBottom: '2px solid transparent' }
+
+              return (
+                <div key={entry.href} className={isMega ? '' : 'relative'}>
+                  {hasKids ? (
+                    <button
+                      onClick={() => setOpenMenu(isOpen ? null : entry.href)}
+                      aria-expanded={isOpen}
+                      className="t-nav flex items-center gap-1 text-primary bg-transparent border-none cursor-pointer px-3.5 py-2 hover:opacity-70 transition-opacity"
+                      style={activeStyle}
                     >
-                      <path d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                ) : (
-                  <Link
-                    href={entry.href}
-                    className="t-nav text-primary px-3.5 py-2 hover:opacity-70 transition-opacity"
-                    style={{ ...activeStyle, display: 'block', textDecoration: 'none' }}
-                  >
-                    {entry.label}
-                  </Link>
-                )}
+                      {entry.label}
+                      <svg
+                        width="10" height="10" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" strokeWidth="2.5"
+                        style={{ transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 150ms' }}
+                      >
+                        <path d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                  ) : (
+                    <Link
+                      href={entry.href}
+                      className="t-nav text-primary px-3.5 py-2 hover:opacity-70 transition-opacity"
+                      style={{ ...activeStyle, display: 'block', textDecoration: 'none' }}
+                    >
+                      {entry.label}
+                    </Link>
+                  )}
+                  {isOpen && !isMega && entry.children && (
+                    <SimpleDropdown entry={entry} onClose={closeAll} />
+                  )}
+                </div>
+              )
+            })}
+          </nav>
 
-                {/* Simple dropdown — positioned inside nav item wrapper */}
-                {isOpen && !isMega && entry.children && (
-                  <SimpleDropdown entry={entry} onClose={closeAll} />
-                )}
-              </div>
-            )
-          })}
-        </nav>
+          {/* Search input — expands from the icon */}
+          <div
+            style={{
+              overflow:   'hidden',
+              width:      searchOpen ? '260px' : '0px',
+              opacity:    searchOpen ? 1 : 0,
+              transition: 'width 280ms cubic-bezier(0.4,0,0.2,1), opacity 180ms ease',
+              display:    'flex',
+              alignItems: 'center',
+            }}
+          >
+            <form onSubmit={e => e.preventDefault()} style={{ width: '100%', display: 'flex' }}>
+              <input
+                ref={desktopSearchRef}
+                type="text"
+                placeholder="Buscar en el sitio..."
+                className="font-lato text-primary bg-transparent"
+                style={{
+                  width:        '100%',
+                  fontSize:     '14px',
+                  letterSpacing:'0.3px',
+                  border:       'none',
+                  borderBottom: '1.5px solid #1B1A19',
+                  outline:      'none',
+                  padding:      '4px 0 4px 8px',
+                }}
+              />
+            </form>
+          </div>
 
-        {/* Hamburger */}
-        <button
-          onClick={() => setMobileOpen(v => !v)}
-          aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
-          aria-expanded={mobileOpen}
-          className="lg:hidden flex flex-col justify-center items-center gap-1.5 p-2 bg-transparent border-none cursor-pointer"
-        >
-          {mobileOpen ? (
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B1A19" strokeWidth="2">
-              <path strokeLinecap="round" d="M18 6L6 18M6 6l12 12" />
+          {/* Search / close icon — always visible, morphs */}
+          <button
+            onClick={() => searchOpen ? closeSearch() : (setOpenMenu(null), setSearchOpen(true))}
+            aria-label={searchOpen ? 'Cerrar búsqueda' : 'Abrir búsqueda'}
+            className="ml-2 shrink-0 bg-transparent border-none cursor-pointer p-2 flex items-center text-primary hover:opacity-60 transition-opacity"
+          >
+            <svg
+              width="18" height="18" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" strokeWidth="2"
+              style={{ transition: 'transform 200ms ease', transform: searchOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}
+            >
+              {searchOpen ? (
+                <path strokeLinecap="round" d="M18 6L6 18M6 6l12 12" />
+              ) : (
+                <>
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </>
+              )}
             </svg>
-          ) : (
-            <>
-              <span style={{ display: 'block', width: '22px', height: '2px', background: '#1B1A19' }} />
-              <span style={{ display: 'block', width: '22px', height: '2px', background: '#1B1A19' }} />
-              <span style={{ display: 'block', width: '22px', height: '2px', background: '#1B1A19' }} />
-            </>
-          )}
-        </button>
+          </button>
+        </div>
+
+        {/* ── Mobile right side ── */}
+        <div className="lg:hidden flex items-center gap-1">
+
+          {/* Mobile input — expands between logo and icons */}
+          <div
+            style={{
+              overflow:   'hidden',
+              width:      searchOpen ? '160px' : '0px',
+              opacity:    searchOpen ? 1 : 0,
+              transition: 'width 280ms cubic-bezier(0.4,0,0.2,1), opacity 180ms ease',
+              display:    'flex',
+              alignItems: 'center',
+            }}
+          >
+            <input
+              ref={mobileSearchRef}
+              type="text"
+              placeholder="Buscar..."
+              className="font-lato text-primary bg-transparent"
+              style={{
+                width:        '100%',
+                fontSize:     '14px',
+                letterSpacing:'0.3px',
+                border:       'none',
+                borderBottom: '1.5px solid #1B1A19',
+                outline:      'none',
+                padding:      '4px 0',
+              }}
+            />
+          </div>
+
+          {/* Search / close icon */}
+          <button
+            onClick={() => searchOpen ? closeSearch() : setSearchOpen(true)}
+            aria-label={searchOpen ? 'Cerrar búsqueda' : 'Abrir búsqueda'}
+            className="bg-transparent border-none cursor-pointer p-2 flex items-center text-primary hover:opacity-60 transition-opacity"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {searchOpen ? (
+                <path strokeLinecap="round" d="M18 6L6 18M6 6l12 12" />
+              ) : (
+                <>
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </>
+              )}
+            </svg>
+          </button>
+
+          {/* Hamburger */}
+          <button
+            onClick={() => setMobileOpen(v => !v)}
+            aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={mobileOpen}
+            className="flex flex-col justify-center items-center gap-1.5 p-2 bg-transparent border-none cursor-pointer"
+          >
+            {mobileOpen ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B1A19" strokeWidth="2">
+                <path strokeLinecap="round" d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            ) : (
+              <>
+                <span style={{ display: 'block', width: '22px', height: '2px', background: '#1B1A19' }} />
+                <span style={{ display: 'block', width: '22px', height: '2px', background: '#1B1A19' }} />
+                <span style={{ display: 'block', width: '22px', height: '2px', background: '#1B1A19' }} />
+              </>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mega menu — rendered at header level so left-0/right-0 span full header width */}
