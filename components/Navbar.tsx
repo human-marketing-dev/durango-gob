@@ -19,7 +19,7 @@ function MegaPanel({ entry, onClose }: { entry: NavEntry; onClose: () => void })
   return (
     <div
       className="absolute left-0 right-0 top-full z-50 bg-white border-t-2 border-primary shadow-lg"
-      style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
+      style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12)', animation: 'dropdown-in 160ms ease forwards' }}
     >
       <div className="max-w-content mx-auto site-px py-10">
         <div className={`grid ${colClass} gap-10`}>
@@ -77,7 +77,7 @@ function SimpleDropdown({ entry, onClose }: { entry: NavEntry; onClose: () => vo
   return (
     <div
       className="absolute left-0 top-full z-50 bg-white border-t-2 border-primary min-w-56"
-      style={{ boxShadow: '0 8px 24px rgba(0,0,0,0.10)' }}
+      style={{ boxShadow: '0 8px 24px rgba(0,0,0,0.10)', animation: 'dropdown-in 160ms ease forwards' }}
     >
       {(entry.children as NavLeaf[]).map((item, i, arr) => (
         <Link
@@ -134,7 +134,7 @@ function MobileItem({ entry }: { entry: NavEntry | NavSection }) {
         </svg>
       </button>
 
-      {open && (
+      <div style={{ overflow: 'hidden', maxHeight: open ? '800px' : '0px', transition: 'max-height 280ms ease' }}>
         <div className="bg-white border-t border-blue-bg">
           <Link
             href={entry.href}
@@ -158,7 +158,7 @@ function MobileItem({ entry }: { entry: NavEntry | NavSection }) {
             )
           )}
         </div>
-      )}
+      </div>
     </div>
   )
 }
@@ -410,19 +410,28 @@ export default function Navbar() {
             onClick={() => setMobileOpen(v => !v)}
             aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={mobileOpen}
-            className="flex flex-col justify-center items-center gap-1.5 p-2 bg-transparent border-none cursor-pointer"
+            className="p-2 bg-transparent border-none cursor-pointer"
           >
-            {mobileOpen ? (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1B1A19" strokeWidth="2">
-                <path strokeLinecap="round" d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            ) : (
-              <>
-                <span style={{ display: 'block', width: '22px', height: '2px', background: '#1B1A19' }} />
-                <span style={{ display: 'block', width: '22px', height: '2px', background: '#1B1A19' }} />
-                <span style={{ display: 'block', width: '22px', height: '2px', background: '#1B1A19' }} />
-              </>
-            )}
+            <div style={{ position: 'relative', width: '22px', height: '16px' }}>
+              <span style={{
+                position: 'absolute', width: '22px', height: '2px', background: '#1B1A19',
+                top: mobileOpen ? '7px' : '0px',
+                transform: mobileOpen ? 'rotate(45deg)' : 'rotate(0deg)',
+                transition: 'top 150ms ease, transform 150ms ease 150ms',
+              }} />
+              <span style={{
+                position: 'absolute', width: '22px', height: '2px', background: '#1B1A19',
+                top: '7px',
+                opacity: mobileOpen ? 0 : 1,
+                transition: 'opacity 120ms ease',
+              }} />
+              <span style={{
+                position: 'absolute', width: '22px', height: '2px', background: '#1B1A19',
+                top: mobileOpen ? '7px' : '14px',
+                transform: mobileOpen ? 'rotate(-45deg)' : 'rotate(0deg)',
+                transition: 'top 150ms ease, transform 150ms ease 150ms',
+              }} />
+            </div>
           </button>
         </div>
       </div>
@@ -433,13 +442,19 @@ export default function Navbar() {
       )}
 
       {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="lg:hidden border-t" style={{ borderColor: '#B8C0B8' }}>
-          {nav.map(entry => (
-            <MobileItem key={entry.href} entry={entry} />
-          ))}
-        </div>
-      )}
+      <div
+        className="lg:hidden border-t"
+        style={{
+          borderColor: '#B8C0B8',
+          overflow: 'hidden',
+          maxHeight: mobileOpen ? '100vh' : '0px',
+          transition: 'max-height 320ms ease',
+        }}
+      >
+        {nav.map(entry => (
+          <MobileItem key={entry.href} entry={entry} />
+        ))}
+      </div>
     </header>
   )
 }
