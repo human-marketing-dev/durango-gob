@@ -89,7 +89,7 @@ export default function Page() {
         <p className="font-lato text-overlay uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '2px' }}>
           Magistrados
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1px', background: '#B8C0B8' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1px', background: '#B8C0B8' }}>
           {pleno.map((m, i) => (
             <div key={i} className="bg-white flex flex-col">
               <AvatarPlaceholder />

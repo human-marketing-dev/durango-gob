@@ -139,7 +139,7 @@ function IconMail() {
 
 function MemberGrid({ members }: { members: Miembro[] }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1px', background: '#B8C0B8' }}>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1px', background: '#B8C0B8' }}>
       {members.map((m, i) => (
         <div key={i} className="bg-white flex flex-col">
           <AvatarPlaceholder />

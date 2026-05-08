@@ -112,7 +112,7 @@ export default function Page() {
         {/* Presidenta — featured */}
         <p className="font-lato text-overlay uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '2px' }}>Presidencia</p>
         <div className="flex flex-col sm:flex-row" style={{ border: '1px solid #B8C0B8', marginBottom: '56px' }}>
-          <div style={{ width: '200px', flexShrink: 0 }}>
+          <div className="w-full sm:w-48" style={{ flexShrink: 0 }}>
             <AvatarPlaceholder large />
           </div>
           <div style={{ padding: '32px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -142,7 +142,7 @@ export default function Page() {
 
         {/* Comisionados */}
         <p className="font-lato text-overlay uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '2px' }}>Comisionados</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1px', background: '#B8C0B8' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1px', background: '#B8C0B8' }}>
           {resto.map((m, i) => (
             <div key={i} className="bg-white flex flex-col">
               <AvatarPlaceholder />

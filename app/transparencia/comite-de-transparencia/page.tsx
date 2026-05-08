@@ -171,7 +171,7 @@ export default function Page() {
               className="bg-white flex flex-col sm:flex-row gap-0"
               style={{ border: '1px solid #B8C0B8' }}
             >
-              <div style={{ width: '180px', flexShrink: 0 }}>
+              <div className="w-full sm:w-44" style={{ flexShrink: 0 }}>
                 <AvatarPlaceholder />
               </div>
               <div style={{ padding: '32px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -196,12 +196,7 @@ export default function Page() {
         <p className="font-lato text-overlay uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '2px' }}>
           Integrantes y Secretaría
         </p>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: '1px',
-          background: '#B8C0B8',
-        }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1px', background: '#B8C0B8' }}>
           {comite.filter(m => !m.presidente).map(m => (
             <div key={m.nombre} className="bg-white flex flex-col">
               <AvatarPlaceholder />
@@ -240,7 +235,7 @@ export default function Page() {
           Unidad de Transparencia
         </h2>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1px', background: '#B8C0B8' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1px', background: '#B8C0B8' }}>
 
           {/* Staff */}
           <div className="bg-white" style={{ padding: '32px 28px' }}>
