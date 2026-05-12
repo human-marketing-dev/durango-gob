@@ -42,14 +42,14 @@ export default function Footer() {
               >
                 {entry.label}
               </p>
-              {(entry.children ?? []).map(child => (
+              {(entry.children ?? []).filter(child => child.href).map(child => (
                 <Link
                   key={child.href}
-                  href={child.href}
+                  href={child.href!}
                   className="text-blue-el hover:text-white transition-colors"
                   style={{ fontSize: '13px', lineHeight: '1.4em', letterSpacing: '0.3px', textDecoration: 'none' }}
                 >
-                  {isNavSection(child) ? child.label : child.label}
+                  {child.label}
                 </Link>
               ))}
             </div>

@@ -24,15 +24,24 @@ function MegaPanel({ entry, onClose }: { entry: NavEntry; onClose: () => void })
       <div className="max-w-content mx-auto site-px py-10">
         <div className={`grid ${colClass} gap-10`}>
           {sections.map(section => (
-            <div key={section.href}>
-              <Link
-                href={section.href}
-                onClick={onClose}
-                className="block font-lato text-xs font-medium uppercase text-primary border-b border-secondary pb-2 mb-4 hover:opacity-70 transition-opacity"
-                style={{ letterSpacing: '1.5px' }}
-              >
-                {section.label}
-              </Link>
+            <div key={section.label}>
+              {section.href ? (
+                <Link
+                  href={section.href}
+                  onClick={onClose}
+                  className="block font-lato text-xs font-medium uppercase text-primary border-b border-secondary pb-2 mb-4 hover:opacity-70 transition-opacity"
+                  style={{ letterSpacing: '1.5px' }}
+                >
+                  {section.label}
+                </Link>
+              ) : (
+                <span
+                  className="block font-lato text-xs font-medium uppercase text-primary border-b border-secondary pb-2 mb-4"
+                  style={{ letterSpacing: '1.5px' }}
+                >
+                  {section.label}
+                </span>
+              )}
               <ul className="space-y-2.5">
                 {section.children.map(item => (
                   <li key={item.href}>
@@ -108,7 +117,7 @@ function MobileItem({ entry }: { entry: NavEntry | NavSection }) {
   if (!hasChildren) {
     return (
       <Link
-        href={entry.href}
+        href={entry.href ?? '#'}
         className="block font-lato text-sm text-primary px-6 py-3.5 border-b border-blue-bg hover:bg-blue-bg transition-colors uppercase"
         style={{ letterSpacing: '0.8px' }}
       >
@@ -136,16 +145,18 @@ function MobileItem({ entry }: { entry: NavEntry | NavSection }) {
 
       <div style={{ overflow: 'hidden', maxHeight: open ? '800px' : '0px', transition: 'max-height 280ms ease' }}>
         <div className="bg-white border-t border-blue-bg">
-          <Link
-            href={entry.href}
-            className="block font-lato text-xs text-overlay px-8 py-2.5 hover:bg-blue-bg transition-colors border-b border-blue-bg"
-            style={{ letterSpacing: '0.5px' }}
-          >
-            Ver todo: {entry.label}
-          </Link>
+          {entry.href && (
+            <Link
+              href={entry.href}
+              className="block font-lato text-xs text-overlay px-8 py-2.5 hover:bg-blue-bg transition-colors border-b border-blue-bg"
+              style={{ letterSpacing: '0.5px' }}
+            >
+              Ver todo: {entry.label}
+            </Link>
+          )}
           {children.map(child =>
             isNavSection(child) ? (
-              <MobileItem key={child.href} entry={child} />
+              <MobileItem key={child.label} entry={child} />
             ) : (
               <Link
                 key={(child as NavLeaf).href}

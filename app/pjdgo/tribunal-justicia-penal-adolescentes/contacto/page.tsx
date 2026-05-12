@@ -58,6 +58,13 @@ const secciones: Seccion[] = [
         ext:      '122',
         correo:   'salaunitaria@tmidgo.gob.mx',
       },
+      {
+        nombre:   'Lic. Omar Quiñones Valdez',
+        cargo:    'Secretario de Acuerdos',
+        telefono: '618 811 03 93',
+        ext:      '117',
+        correo:   'unidaddetransparencia@tmidgo.gob.mx',
+      },
     ],
   },
   {
@@ -83,18 +90,6 @@ const secciones: Seccion[] = [
         telefono: '618 811 03 93',
         ext:      '118',
         correo:   'juzgadotercero@tmidgo.gob.mx',
-      },
-    ],
-  },
-  {
-    titulo: 'Secretaría de Acuerdos',
-    personas: [
-      {
-        nombre:   'Lic. Omar Quiñones Valdez',
-        cargo:    'Secretario de Acuerdos',
-        telefono: '618 811 03 93',
-        ext:      '117',
-        correo:   'unidaddetransparencia@tmidgo.gob.mx',
       },
     ],
   },

@@ -6,7 +6,17 @@ export const metadata: Metadata = {
   description: 'Comisionados del Pleno del Órgano de Administración Judicial del Estado de Durango.',
 }
 
-const comisionados = [
+interface Comisionado {
+  nombre: string
+  cargo: string
+  telefono?: string
+  ext?: string
+  correo: string
+  presidenta?: boolean
+  cv?: string
+}
+
+const comisionados: Comisionado[] = [
   {
     nombre:     'C. P. Tania Julieta Hernández Maldonado',
     cargo:      'Comisionada Presidenta del Órgano de Administración',
@@ -67,6 +77,16 @@ function IconMail() {
   return (
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" />
+    </svg>
+  )
+}
+
+function IconDownload() {
+  return (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
     </svg>
   )
 }
@@ -136,6 +156,10 @@ export default function Page() {
                 <IconMail />
                 <span className="font-lato" style={{ fontSize: '12px' }}>{presidenta.correo}</span>
               </a>
+              <a href={presidenta.cv ?? '#'} download className="flex items-center gap-1.5 text-overlay hover:text-primary transition-colors" style={{ textDecoration: 'none' }}>
+                <IconDownload />
+                <span className="font-lato uppercase" style={{ fontSize: '10px', letterSpacing: '1px', fontWeight: '500' }}>Currículum</span>
+              </a>
             </div>
           </div>
         </div>
@@ -164,6 +188,10 @@ export default function Page() {
                   <a href={`mailto:${m.correo}`} className="flex items-center gap-1.5 text-overlay hover:text-primary transition-colors" style={{ textDecoration: 'none' }}>
                     <IconMail />
                     <span className="font-lato" style={{ fontSize: '11px' }}>{m.correo}</span>
+                  </a>
+                  <a href={m.cv ?? '#'} download className="flex items-center gap-1.5 text-overlay hover:text-primary transition-colors" style={{ textDecoration: 'none', marginTop: '4px' }}>
+                    <IconDownload />
+                    <span className="font-lato uppercase" style={{ fontSize: '10px', letterSpacing: '1px', fontWeight: '500' }}>Currículum</span>
                   </a>
                 </div>
               </div>

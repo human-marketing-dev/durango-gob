@@ -19,6 +19,7 @@ interface Persona {
 interface Seccion {
   titulo: string
   domicilio?: string
+  conmutador?: string
   personas: Persona[]
 }
 
@@ -187,6 +188,8 @@ const secciones: Seccion[] = [
   },
   {
     titulo: 'Secretarías de Acuerdos',
+    domicilio: 'Palacio de Justicia, Calle Zaragoza s/n esquina con 5 de Febrero, Zona Centro, C.P. 34000, Victoria de Durango, Dgo.',
+    conmutador: '618 811 47 12, 811 65 61, 811 29 75, 618 811 29 78 y 812 03 61',
     personas: [
       {
         nombre:  'Lic. Leticia Guadalupe Salazar Rivera',
@@ -216,7 +219,7 @@ const secciones: Seccion[] = [
   },
   {
     titulo: 'Secretaría de Acuerdos de las Salas Regionales',
-    domicilio: 'Palacio de Justicia (3er piso), Calle Morelos No. 326 Nte., C.P. 35000, Gómez Palacio, Dgo.',
+    domicilio: 'Palacio de Justicia (tercer piso), Calle Morelos No. 326 Nte., Zona Centro, C.P. 35000, Gómez Palacio, Dgo.',
     personas: [
       {
         nombre:   'Dr. Juan Rafael Carrillo Ávila',
@@ -229,6 +232,8 @@ const secciones: Seccion[] = [
   },
   {
     titulo: 'Unidad de Derechos Humanos e Igualdad de Género',
+    domicilio: 'Palacio de Justicia, Calle Zaragoza s/n esquina con 5 de Febrero, Zona Centro, C.P. 34000, Victoria de Durango, Dgo.',
+    conmutador: '618 811 47 12, 811 65 61, 811 29 75, 618 811 29 78 y 812 03 61',
     personas: [
       {
         nombre:   'Lic. Carlos Rafael Ortiz Gómez',
@@ -368,10 +373,18 @@ export default function Page() {
 
               {/* Optional address */}
               {seccion.domicilio && (
-                <div className="flex items-start gap-2 text-overlay mb-3 mt-3">
+                <div className="flex items-start gap-2 text-overlay mb-2 mt-3">
                   <span className="mt-0.5"><IconLocation /></span>
                   <span className="font-lato" style={{ fontSize: '12px', lineHeight: '1.6em', letterSpacing: '0.3px' }}>
                     {seccion.domicilio}
+                  </span>
+                </div>
+              )}
+              {seccion.conmutador && (
+                <div className="flex items-start gap-2 text-overlay mb-3">
+                  <span className="mt-0.5"><IconPhone /></span>
+                  <span className="font-lato" style={{ fontSize: '12px', lineHeight: '1.6em', letterSpacing: '0.3px' }}>
+                    Conmutador: {seccion.conmutador}
                   </span>
                 </div>
               )}

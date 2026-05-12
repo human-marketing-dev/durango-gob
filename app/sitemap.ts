@@ -8,7 +8,7 @@ function collectHrefs(): string[] {
   for (const entry of nav) {
     hrefs.push(entry.href)
     for (const child of entry.children ?? []) {
-      hrefs.push(child.href)
+      if (child.href) hrefs.push(child.href)
       if (isNavSection(child)) {
         for (const leaf of child.children) {
           hrefs.push(leaf.href)

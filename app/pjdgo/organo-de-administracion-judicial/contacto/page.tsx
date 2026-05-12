@@ -169,11 +169,23 @@ const secciones: Seccion[] = [
         telefono: '618 827 50 21 / 618 827 92 56',
         correo:   'ceja-durango@pjdgo.gob.mx',
       },
+    ],
+  },
+  {
+    titulo: 'Centro Distrital de Justicia Alternativa en Lerdo',
+    domicilio: 'Calle Azucena s/n esquina con Azaleas, Colonia Villa de las Flores, Lerdo, Dgo.',
+    personas: [
       {
         nombre:   'Lic. Silvia Mayela Salinas Mares',
         cargo:    'Subdirectora del Centro Distrital de Justicia Alternativa en Lerdo',
         telefono: '871 715 38 57',
       },
+    ],
+  },
+  {
+    titulo: 'Centro Distrital de Justicia Alternativa en Gómez Palacio',
+    domicilio: 'Avenida Independencia No. 251 Oriente, Zona Centro, Gómez Palacio, Dgo.',
+    personas: [
       {
         nombre:   'Lic. María Elena Torres Rodríguez',
         cargo:    'Encargada de la Subdirección del Centro Distrital de Justicia Alternativa en Gómez Palacio',

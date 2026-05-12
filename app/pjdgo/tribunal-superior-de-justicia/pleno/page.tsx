@@ -12,15 +12,18 @@ interface Miembro {
   telefono?: string
   ext?: string
   correo?: string
+  cv?: string
+  presidente?: boolean
 }
 
 const pleno: Miembro[] = [
   {
-    nombre:   'D. D. Manuel Valadez Díaz',
-    cargo:    'Magistrado Presidente',
-    telefono: '618 811 20 73 / 618 812 79 69',
-    ext:      '108 / 141',
-    correo:   'presidencia@pjdgo.gob.mx',
+    nombre:     'D. D. Manuel Valadez Díaz',
+    cargo:      'Magistrado Presidente',
+    telefono:   '618 811 20 73 / 618 812 79 69',
+    ext:        '108 / 141',
+    correo:     'presidencia@pjdgo.gob.mx',
+    presidente: true,
   },
   {
     nombre:   'Dra. María Magdalena Alanís Herrera',
@@ -111,10 +114,11 @@ const plenoRegional: Miembro[] = [
   },
 ]
 
-function AvatarPlaceholder() {
+function AvatarPlaceholder({ large = false }: { large?: boolean }) {
+  const size = large ? 56 : 36
   return (
     <div style={{ width: '100%', aspectRatio: '1/1', background: '#CACECF', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#9AA1A6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="#9AA1A6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
       </svg>
     </div>
@@ -133,6 +137,16 @@ function IconMail() {
   return (
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" />
+    </svg>
+  )
+}
+
+function IconDownload() {
+  return (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
     </svg>
   )
 }
@@ -171,6 +185,10 @@ function MemberGrid({ members }: { members: Miembro[] }) {
                   <span className="font-lato" style={{ fontSize: '11px', letterSpacing: '0.3px' }}>{m.correo}</span>
                 </a>
               )}
+              <a href={m.cv ?? '#'} download className="flex items-center gap-1.5 text-overlay hover:text-primary transition-colors" style={{ textDecoration: 'none', marginTop: '4px' }}>
+                <IconDownload />
+                <span className="font-lato uppercase" style={{ fontSize: '10px', letterSpacing: '1px', fontWeight: '500' }}>Currículum</span>
+              </a>
             </div>
           </div>
         </div>
@@ -180,6 +198,9 @@ function MemberGrid({ members }: { members: Miembro[] }) {
 }
 
 export default function Page() {
+  const presidente = pleno.find(m => m.presidente)!
+  const resto = pleno.filter(m => !m.presidente)
+
   return (
     <div className="bg-white">
 
@@ -214,10 +235,47 @@ export default function Page() {
       {/* Members */}
       <div className="max-w-content mx-auto site-px" style={{ paddingTop: '48px', paddingBottom: '80px' }}>
 
+        {/* Presidente — featured */}
+        <p className="font-lato text-overlay uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '2px' }}>Presidencia</p>
+        <div className="flex flex-col sm:flex-row" style={{ border: '1px solid #B8C0B8', marginBottom: '56px' }}>
+          <div className="w-full sm:w-48" style={{ flexShrink: 0 }}>
+            <AvatarPlaceholder large />
+          </div>
+          <div style={{ padding: '32px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <span className="font-lato text-white bg-primary uppercase inline-block" style={{ fontSize: '10px', fontWeight: '600', letterSpacing: '1.5px', padding: '4px 10px', marginBottom: '16px', alignSelf: 'flex-start' }}>
+              Magistrado Presidente
+            </span>
+            <h2 className="font-monument text-primary" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.5rem)', fontWeight: '400', lineHeight: '1.2em', marginBottom: '8px' }}>
+              {presidente.nombre}
+            </h2>
+            <p className="font-lato text-accent" style={{ fontSize: '13px', lineHeight: '1.6em', letterSpacing: '0.3px', marginBottom: '16px' }}>
+              {presidente.cargo}
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+              {presidente.telefono && (
+                <div className="flex items-center gap-1.5 text-overlay">
+                  <IconPhone />
+                  <span className="font-lato" style={{ fontSize: '12px' }}>{presidente.telefono} · Ext. {presidente.ext}</span>
+                </div>
+              )}
+              {presidente.correo && (
+                <a href={`mailto:${presidente.correo}`} className="flex items-center gap-1.5 text-overlay hover:text-primary transition-colors" style={{ textDecoration: 'none' }}>
+                  <IconMail />
+                  <span className="font-lato" style={{ fontSize: '12px' }}>{presidente.correo}</span>
+                </a>
+              )}
+              <a href={presidente.cv ?? '#'} download className="flex items-center gap-1.5 text-overlay hover:text-primary transition-colors" style={{ textDecoration: 'none' }}>
+                <IconDownload />
+                <span className="font-lato uppercase" style={{ fontSize: '10px', letterSpacing: '1px', fontWeight: '500' }}>Currículum</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <p className="font-lato text-overlay uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '2px' }}>
           Magistrados — Victoria de Durango
         </p>
-        <MemberGrid members={pleno} />
+        <MemberGrid members={resto} />
 
         <div style={{ marginTop: '56px' }}>
           <p className="font-lato text-overlay uppercase mb-2" style={{ fontSize: '11px', letterSpacing: '2px' }}>

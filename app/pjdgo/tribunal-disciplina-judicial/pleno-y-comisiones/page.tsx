@@ -6,11 +6,20 @@ export const metadata: Metadata = {
   description: 'Integrantes del Pleno del Tribunal de Disciplina Judicial del Estado de Durango.',
 }
 
-const pleno = [
+interface Miembro {
+  nombre: string
+  cargo: string
+  correo: string
+  cv?: string
+  presidenta?: boolean
+}
+
+const pleno: Miembro[] = [
   {
-    nombre: 'M. A. P. Irma Selene Soto Rodríguez',
-    cargo:  'Magistrada Presidenta y titular de la Primera Ponencia',
-    correo: 'primeraponencia.tdj@pjdgo.gob.mx',
+    nombre:     'M. A. P. Irma Selene Soto Rodríguez',
+    cargo:      'Magistrada Presidenta y titular de la Primera Ponencia',
+    correo:     'primeraponencia.tdj@pjdgo.gob.mx',
+    presidenta: true,
   },
   {
     nombre: 'M. D. E. José Durán Barrera',
@@ -34,10 +43,11 @@ const pleno = [
   },
 ]
 
-function AvatarPlaceholder() {
+function AvatarPlaceholder({ large = false }: { large?: boolean }) {
+  const size = large ? 56 : 36
   return (
     <div style={{ width: '100%', aspectRatio: '1/1', background: '#CACECF', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#9AA1A6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="#9AA1A6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
       </svg>
     </div>
@@ -52,7 +62,20 @@ function IconMail() {
   )
 }
 
+function IconDownload() {
+  return (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  )
+}
+
 export default function Page() {
+  const presidenta = pleno.find(m => m.presidenta)!
+  const resto = pleno.filter(m => !m.presidenta)
+
   return (
     <div className="bg-white">
 
@@ -86,11 +109,40 @@ export default function Page() {
 
       {/* Members */}
       <div className="max-w-content mx-auto site-px" style={{ paddingTop: '48px', paddingBottom: '80px' }}>
-        <p className="font-lato text-overlay uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '2px' }}>
-          Magistrados
-        </p>
+
+        {/* Presidenta — featured */}
+        <p className="font-lato text-overlay uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '2px' }}>Presidencia</p>
+        <div className="flex flex-col sm:flex-row" style={{ border: '1px solid #B8C0B8', marginBottom: '56px' }}>
+          <div className="w-full sm:w-48" style={{ flexShrink: 0 }}>
+            <AvatarPlaceholder large />
+          </div>
+          <div style={{ padding: '32px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <span className="font-lato text-white bg-primary uppercase inline-block" style={{ fontSize: '10px', fontWeight: '600', letterSpacing: '1.5px', padding: '4px 10px', marginBottom: '16px', alignSelf: 'flex-start' }}>
+              Magistrada Presidenta
+            </span>
+            <h2 className="font-monument text-primary" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.5rem)', fontWeight: '400', lineHeight: '1.2em', marginBottom: '8px' }}>
+              {presidenta.nombre}
+            </h2>
+            <p className="font-lato text-accent" style={{ fontSize: '13px', lineHeight: '1.6em', letterSpacing: '0.3px', marginBottom: '16px' }}>
+              {presidenta.cargo}
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+              <a href={`mailto:${presidenta.correo}`} className="flex items-center gap-1.5 text-overlay hover:text-primary transition-colors" style={{ textDecoration: 'none' }}>
+                <IconMail />
+                <span className="font-lato" style={{ fontSize: '12px' }}>{presidenta.correo}</span>
+              </a>
+              <a href={presidenta.cv ?? '#'} download className="flex items-center gap-1.5 text-overlay hover:text-primary transition-colors" style={{ textDecoration: 'none' }}>
+                <IconDownload />
+                <span className="font-lato uppercase" style={{ fontSize: '10px', letterSpacing: '1px', fontWeight: '500' }}>Currículum</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Resto de magistrados */}
+        <p className="font-lato text-overlay uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '2px' }}>Magistrados</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1px', background: '#B8C0B8' }}>
-          {pleno.map((m, i) => (
+          {resto.map((m, i) => (
             <div key={i} className="bg-white flex flex-col">
               <AvatarPlaceholder />
               <div style={{ padding: '18px 18px 22px' }}>
@@ -104,10 +156,15 @@ export default function Page() {
                   <IconMail />
                   <span className="font-lato" style={{ fontSize: '11px', letterSpacing: '0.3px' }}>{m.correo}</span>
                 </a>
+                <a href={m.cv ?? '#'} download className="flex items-center gap-1.5 text-overlay hover:text-primary transition-colors" style={{ textDecoration: 'none', marginTop: '4px' }}>
+                  <IconDownload />
+                  <span className="font-lato uppercase" style={{ fontSize: '10px', letterSpacing: '1px', fontWeight: '500' }}>Currículum</span>
+                </a>
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </div>
   )

@@ -97,14 +97,14 @@ function Hero() {
 // ── Section 2: Bienvenido ────────────────────────────────────────────────────
 
 const quickLinks = [
-  { label: 'Cartas de Antecedentes Penales',   href: '/tramites-y-servicios/cartas-de-antecedentes-penales',  Icon: IconFile     },
-  { label: 'Lista de Peritos',                  href: '/tramites-y-servicios/lista-de-peritos',                Icon: IconList     },
-  { label: 'Registro de Títulos Profesionales', href: '/tramites-y-servicios/registro-de-titulos-profesionales', Icon: IconDiploma  },
-  { label: 'Justicia Alternativa',              href: '/tramites-y-servicios/justicia-alternativa',            Icon: IconScales   },
-  { label: 'Organigrama Institucional',         href: '/recursos/organigrama-institucional',                   Icon: IconOrg      },
-  { label: 'Directorio',                        href: '/recursos/directorio',                                  Icon: IconBook     },
-  { label: 'Calendario',                        href: '/recursos/calendario',                                  Icon: IconCalendar },
-  { label: 'Voluntariado',                      href: '/recursos/voluntariado',                                Icon: IconHeart    },
+  { label: 'Lista de Acuerdos',          href: '/pjdgo/tribunal-superior-de-justicia/listas-de-acuerdos',       Icon: IconList     },
+  { label: 'Lista de Peritos',           href: '/tramites-y-servicios/lista-de-peritos',                        Icon: IconFile     },
+  { label: 'Calendario',                 href: '/recursos/calendario',                                          Icon: IconCalendar },
+  { label: 'Directorio',                 href: '/recursos/directorio',                                          Icon: IconBook     },
+  { label: 'Justicia Alternativa (CEJA)', href: '/tramites-y-servicios/justicia-alternativa',                   Icon: IconScales   },
+  { label: 'Defensoría Pública (INDEPU)', href: '/tramites-y-servicios/defensoria-publica',                     Icon: IconOrg      },
+  { label: 'Carta de Antecedentes',      href: '/tramites-y-servicios/cartas-de-antecedentes-penales',          Icon: IconDiploma  },
+  { label: 'Registro de Títulos',        href: '/tramites-y-servicios/registro-de-titulos-profesionales',       Icon: IconHeart    },
 ]
 
 function WelcomeSection() {

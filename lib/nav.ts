@@ -5,7 +5,7 @@ export type NavLeaf = {
 
 export type NavSection = {
   label: string
-  href: string
+  href?: string
   children: NavLeaf[]
 }
 
@@ -26,7 +26,6 @@ export const nav: NavEntry[] = [
     children: [
       {
         label: 'Tribunal Superior de Justicia',
-        href: '/pjdgo/tribunal-superior-de-justicia',
         children: [
           { label: 'Pleno', href: '/pjdgo/tribunal-superior-de-justicia/pleno' },
           { label: 'Órganos Jurisdiccionales', href: '/pjdgo/tribunal-superior-de-justicia/organos-jurisdiccionales' },
@@ -40,7 +39,6 @@ export const nav: NavEntry[] = [
       },
       {
         label: 'Tribunal de Disciplina Judicial',
-        href: '/pjdgo/tribunal-disciplina-judicial',
         children: [
           { label: 'Pleno y Comisiones', href: '/pjdgo/tribunal-disciplina-judicial/pleno-y-comisiones' },
           { label: 'Evaluaciones y Sanciones', href: '/pjdgo/tribunal-disciplina-judicial/evaluaciones-y-sanciones' },
@@ -50,7 +48,6 @@ export const nav: NavEntry[] = [
       },
       {
         label: 'Tribunal de Justicia Penal para Adolescentes',
-        href: '/pjdgo/tribunal-justicia-penal-adolescentes',
         children: [
           { label: 'Presidencia', href: '/pjdgo/tribunal-justicia-penal-adolescentes/presidencia' },
           { label: 'Sala Unitaria', href: '/pjdgo/tribunal-justicia-penal-adolescentes/sala-unitaria' },
@@ -61,7 +58,6 @@ export const nav: NavEntry[] = [
       },
       {
         label: 'Órgano de Administración Judicial',
-        href: '/pjdgo/organo-de-administracion-judicial',
         children: [
           { label: 'Pleno y Comisiones', href: '/pjdgo/organo-de-administracion-judicial/pleno-y-comisiones' },
           { label: 'Centro Estatal de Justicia Alternativa (CEJA)', href: '/pjdgo/organo-de-administracion-judicial/ceja' },
