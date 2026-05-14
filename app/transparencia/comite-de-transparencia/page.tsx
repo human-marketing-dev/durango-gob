@@ -8,11 +8,19 @@ export const metadata: Metadata = {
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
-const comite = [
+interface Miembro {
+  nombre: string
+  cargo: string
+  rol: string
+  presidente?: boolean
+  cv?: string
+}
+
+const comite: Miembro[] = [
   {
-    nombre:  'M.D. Juan Guillermo Toro Lerma',
-    cargo:   'Secretario General de Acuerdos y del Pleno del Tribunal Superior de Justicia',
-    rol:     'Presidente',
+    nombre:     'M.D. Juan Guillermo Toro Lerma',
+    cargo:      'Secretario General de Acuerdos y del Pleno del Tribunal Superior de Justicia',
+    rol:        'Presidente',
     presidente: true,
   },
   {
@@ -107,6 +115,16 @@ function IconMail() {
   )
 }
 
+function IconDownload() {
+  return (
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  )
+}
+
 function IconClock() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -184,9 +202,13 @@ export default function Page() {
                 <h3 className="font-monument text-primary" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.5rem)', fontWeight: '400', lineHeight: '1.2em', marginBottom: '8px' }}>
                   {m.nombre}
                 </h3>
-                <p className="font-lato text-accent" style={{ fontSize: '13px', lineHeight: '1.6em', letterSpacing: '0.3px' }}>
+                <p className="font-lato text-accent" style={{ fontSize: '13px', lineHeight: '1.6em', letterSpacing: '0.3px', marginBottom: '16px' }}>
                   {m.cargo}
                 </p>
+                <a href={m.cv ?? '#'} download className="flex items-center gap-1.5 text-overlay hover:text-primary transition-colors" style={{ textDecoration: 'none', alignSelf: 'flex-start' }}>
+                  <IconDownload />
+                  <span className="font-lato uppercase" style={{ fontSize: '10px', letterSpacing: '1px', fontWeight: '500' }}>Currículum</span>
+                </a>
               </div>
             </div>
           </div>
@@ -217,9 +239,13 @@ export default function Page() {
                 <p className="font-sans text-primary" style={{ fontSize: '14px', fontWeight: '500', lineHeight: '1.35em', marginBottom: '8px' }}>
                   {m.nombre}
                 </p>
-                <p className="font-lato text-accent" style={{ fontSize: '12px', lineHeight: '1.55em', letterSpacing: '0.3px' }}>
+                <p className="font-lato text-accent" style={{ fontSize: '12px', lineHeight: '1.55em', letterSpacing: '0.3px', marginBottom: '10px' }}>
                   {m.cargo}
                 </p>
+                <a href={m.cv ?? '#'} download className="flex items-center gap-1.5 text-overlay hover:text-primary transition-colors" style={{ textDecoration: 'none' }}>
+                  <IconDownload />
+                  <span className="font-lato uppercase" style={{ fontSize: '10px', letterSpacing: '1px', fontWeight: '500' }}>Currículum</span>
+                </a>
               </div>
             </div>
           ))}

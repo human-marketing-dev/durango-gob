@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { nav, isNavSection } from '@/lib/nav'
+import { nav, isNavSection, type NavLeaf, type NavSection } from '@/lib/nav'
 
 export default function Footer() {
   return (
@@ -42,16 +42,33 @@ export default function Footer() {
               >
                 {entry.label}
               </p>
-              {(entry.children ?? []).filter(child => child.href).map(child => (
-                <Link
-                  key={child.href}
-                  href={child.href!}
-                  className="text-blue-el hover:text-white transition-colors"
-                  style={{ fontSize: '13px', lineHeight: '1.4em', letterSpacing: '0.3px', textDecoration: 'none' }}
-                >
-                  {child.label}
-                </Link>
-              ))}
+              {(entry.children ?? []).map(child => {
+                if (isNavSection(child)) {
+                  const section = child as NavSection
+                  const href = section.href ?? section.children[0]?.href ?? '#'
+                  return (
+                    <Link
+                      key={section.label}
+                      href={href}
+                      className="text-blue-el hover:text-white transition-colors"
+                      style={{ fontSize: '13px', lineHeight: '1.4em', letterSpacing: '0.3px', textDecoration: 'none' }}
+                    >
+                      {section.label}
+                    </Link>
+                  )
+                }
+                const leaf = child as NavLeaf
+                return (
+                  <Link
+                    key={leaf.href}
+                    href={leaf.href}
+                    className="text-blue-el hover:text-white transition-colors"
+                    style={{ fontSize: '13px', lineHeight: '1.4em', letterSpacing: '0.3px', textDecoration: 'none' }}
+                  >
+                    {leaf.label}
+                  </Link>
+                )
+              })}
             </div>
           ))}
         </div>
@@ -68,7 +85,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             {[
               { label: 'Aviso de Privacidad', href: '/transparencia/avisos-de-privacidad' },
-              { label: 'Términos de Uso', href: '#' },
+              { label: 'Términos de Uso', href: '/terminos-de-uso' },
               { label: 'Accesibilidad', href: '#' },
             ].map(({ label, href }, i, arr) => (
               <span key={label} className="flex items-center gap-3">
