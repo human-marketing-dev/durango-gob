@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Open_Sans, Lato, Poppins } from "next/font/google";
+import { Open_Sans, Lato, Poppins, Cinzel } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -22,6 +22,13 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-poppins",
+  display: "swap",
+});
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-monument",
   display: "swap",
 });
 
@@ -69,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="es"
-      className={`${openSans.variable} ${lato.variable} ${poppins.variable}`}
+      className={`${openSans.variable} ${lato.variable} ${poppins.variable} ${cinzel.variable}`}
     >
       <body className="font-lato antialiased bg-white text-primary">
         <Navbar />

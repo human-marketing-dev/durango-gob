@@ -1,31 +1,10 @@
-@font-face {
-  font-family: 'All Rounder Monument';
-  src: url('/fonts/AllrounderMonument-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'All Rounder Monument';
-  src: url('/fonts/AllrounderMonument-Book.woff2') format('woff2');
-  font-weight: 350;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'All Rounder Monument';
-  src: url('/fonts/AllrounderMonument-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-monument: 'All Rounder Monument', Georgia, serif;
+  --font-monument: 'Cinzel', Georgia, serif;
   /* Horizontal site padding — scales from 12px on mobile to 24px on desktop */
   --site-pad: clamp(16px, 2.5vw, 35px);
   /* Design system color tokens */
