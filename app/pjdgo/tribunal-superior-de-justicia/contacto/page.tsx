@@ -231,6 +231,18 @@ const secciones: Seccion[] = [
     ],
   },
   {
+    titulo: 'Vinculación y Atención Ciudadana',
+    personas: [
+      {
+        nombre:   'C. P. Manuel Isaac Cisneros Meraz',
+        cargo:    'Director',
+        telefono: '618 811 47 12',
+        ext:      '257',
+        correo:   'comunicacionsocial@pjdgo.gob.mx',
+      },
+    ],
+  },
+  {
     titulo: 'Unidad de Derechos Humanos e Igualdad de Género',
     domicilio: 'Palacio de Justicia, Calle Zaragoza s/n esquina con 5 de Febrero, Zona Centro, C.P. 34000, Victoria de Durango, Dgo.',
     conmutador: '618 811 47 12, 811 65 61, 811 29 75, 618 811 29 78 y 812 03 61',
@@ -253,18 +265,6 @@ const secciones: Seccion[] = [
         telefono: '618 825 87 14',
         ext:      '126',
         correo:   'voluntariado@tsjdgo.gob.mx',
-      },
-    ],
-  },
-  {
-    titulo: 'Vinculación y Atención Ciudadana',
-    personas: [
-      {
-        nombre:   'C. P. Manuel Isaac Cisneros Meraz',
-        cargo:    'Director',
-        telefono: '618 811 47 12',
-        ext:      '257',
-        correo:   'comunicacionsocial@pjdgo.gob.mx',
       },
     ],
   },

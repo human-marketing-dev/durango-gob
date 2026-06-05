@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Plataforma Nacional de Transparencia — Poder Judicial del Estado de Durango',
@@ -60,16 +61,27 @@ export default function Page() {
       {/* Link section */}
       <div className="max-w-content mx-auto site-px" style={{ paddingTop: '56px', paddingBottom: '80px' }}>
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6" style={{ padding: '36px 40px', border: '1px solid #B8C0B8' }}>
-          <div>
-            <p className="font-lato text-overlay uppercase mb-2" style={{ fontSize: '10px', letterSpacing: '1.5px', fontWeight: '600' }}>
-              Sitio externo
-            </p>
-            <p className="font-sans text-primary" style={{ fontSize: '16px', fontWeight: '500', lineHeight: '1.3em', marginBottom: '4px' }}>
-              Plataforma Nacional de Transparencia
-            </p>
-            <p className="font-lato text-overlay" style={{ fontSize: '12px', letterSpacing: '0.3px' }}>
-              plataformadetransparencia.org.mx
-            </p>
+          <div className="flex items-center gap-6">
+            <div style={{ position: 'relative', width: '120px', height: '60px', flexShrink: 0 }}>
+              <Image
+                src="/plataforma-nacional-transparencia-logo.webp"
+                alt="Plataforma Nacional de Transparencia"
+                fill
+                sizes="120px"
+                style={{ objectFit: 'contain', objectPosition: 'left center' }}
+              />
+            </div>
+            <div>
+              <p className="font-lato text-overlay uppercase mb-2" style={{ fontSize: '10px', letterSpacing: '1.5px', fontWeight: '600' }}>
+                Sitio externo
+              </p>
+              <p className="font-sans text-primary" style={{ fontSize: '16px', fontWeight: '500', lineHeight: '1.3em', marginBottom: '4px' }}>
+                Plataforma Nacional de Transparencia
+              </p>
+              <p className="font-lato text-overlay" style={{ fontSize: '12px', letterSpacing: '0.3px' }}>
+                plataformadetransparencia.org.mx
+              </p>
+            </div>
           </div>
           <a
             href="https://www.plataformadetransparencia.org.mx/Inicio"
