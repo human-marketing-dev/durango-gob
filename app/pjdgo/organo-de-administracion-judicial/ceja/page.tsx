@@ -218,7 +218,7 @@ export default function Page() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: '1px', background: '#B8C0B8' }}>
           {[
-            { cargo: 'Director General', nombre: '[Nombre del Director General]', grado: '[Grado académico]' },
+            { cargo: 'Director General', nombre: 'Lic. Héctor Ayón Nogueira', grado: '' },
             { cargo: 'Subdirectora',     nombre: '[Nombre de Subdirectora]',      grado: '[Grado académico]' },
             { cargo: 'Subdirectora',     nombre: '[Nombre de Subdirectora]',      grado: '[Grado académico]' },
           ].map((p, i) => (

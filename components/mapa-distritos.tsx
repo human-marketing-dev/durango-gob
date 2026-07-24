@@ -45,7 +45,7 @@ export default function MapaDistritos() {
               </div>
             </MarkerContent>
             <MarkerTooltip>
-              {d.nombre} — {d.sede}
+              Distrito {d.numero} — {d.cabecera}
             </MarkerTooltip>
             <MarkerPopup>
               <div style={{ minWidth: '200px', padding: '4px 0' }}>
@@ -53,22 +53,17 @@ export default function MapaDistritos() {
                   Distrito Judicial
                 </p>
                 <p style={{ fontSize: '14px', fontWeight: '600', color: '#1B1A19', marginBottom: '2px', lineHeight: '1.3em' }}>
-                  {d.nombre}
+                  Distrito {d.numero}
                 </p>
                 <p style={{ fontSize: '13px', color: '#4A535A', marginBottom: '10px' }}>
-                  Sede: {d.sede}
+                  Cabecera: {d.cabecera}
                 </p>
                 <div style={{ display: 'flex', gap: '6px', alignItems: 'flex-start', color: '#6B7280' }}>
                   <span style={{ marginTop: '2px', flexShrink: 0 }}><IconLocation /></span>
                   <p style={{ fontSize: '12px', lineHeight: '1.6em', margin: 0 }}>
-                    {d.direccion}
+                    {d.municipios.join(', ')}
                   </p>
                 </div>
-                {d.telefono && (
-                  <p style={{ fontSize: '12px', color: '#6B7280', marginTop: '6px' }}>
-                    Tel: {d.telefono}
-                  </p>
-                )}
               </div>
             </MarkerPopup>
           </MapMarker>

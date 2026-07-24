@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import DirectorioContacto from '@/components/directorio-contacto'
+import { directorio } from '@/lib/directorio'
 
 export const metadata: Metadata = {
   title: 'Universidad Judicial — Órgano de Administración Judicial — PJDGO',
@@ -54,32 +56,6 @@ const convocatorias = [
 ]
 
 // ── Icons ──────────────────────────────────────────────────────────────────────
-
-function IconMail() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-      <polyline points="22,6 12,13 2,6" />
-    </svg>
-  )
-}
-
-function IconPhone() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.5 16z" />
-    </svg>
-  )
-}
-
-function IconLocation() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-      <circle cx="12" cy="10" r="3" />
-    </svg>
-  )
-}
 
 function IconArrow() {
   return (
@@ -208,74 +184,12 @@ export default function Page() {
       </div>
 
       {/* Rector y Contacto */}
-      <div className="max-w-content mx-auto site-px" style={{ paddingTop: '56px', paddingBottom: '56px', borderBottom: '1px solid #B8C0B8' }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0" style={{ border: '1px solid #B8C0B8' }}>
-
-          {/* Rector */}
-          <div style={{ padding: '32px 36px', borderBottom: '1px solid #B8C0B8' }} className="lg:border-b-0 lg:border-r">
-            <p className="font-lato text-overlay uppercase mb-4" style={{ fontSize: '11px', letterSpacing: '2px' }}>Dirección</p>
-            <div className="flex items-start gap-4">
-              <div
-                style={{
-                  width: '64px',
-                  height: '64px',
-                  background: '#CACECF',
-                  flexShrink: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9AA1A6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-              </div>
-              <div>
-                <p className="font-monument text-primary" style={{ fontSize: '1.1rem', fontWeight: '400', lineHeight: '1.3em', marginBottom: '4px' }}>
-                  [Nombre del Rector]
-                </p>
-                <p className="font-lato text-overlay" style={{ fontSize: '12px', letterSpacing: '0.5px', marginBottom: '4px' }}>
-                  Rector de la Universidad Judicial
-                </p>
-                <p className="font-lato text-accent" style={{ fontSize: '13px', lineHeight: '1.6em' }}>
-                  [Grado académico y cargo]
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Contacto */}
-          <div style={{ padding: '32px 36px' }}>
-            <p className="font-lato text-overlay uppercase mb-4" style={{ fontSize: '11px', letterSpacing: '2px' }}>Contacto</p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div className="flex items-start gap-2 text-overlay">
-                <span style={{ marginTop: '2px', flexShrink: 0 }}><IconLocation /></span>
-                <span className="font-lato" style={{ fontSize: '13px', lineHeight: '1.65em', letterSpacing: '0.3px' }}>
-                  [Dirección de la Universidad Judicial]
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-overlay">
-                <IconPhone />
-                <span className="font-lato" style={{ fontSize: '13px', letterSpacing: '0.3px' }}>
-                  [Teléfono]
-                </span>
-              </div>
-              <a
-                href="mailto:universidadjudicial@pjdgo.gob.mx"
-                className="flex items-center gap-2 text-overlay hover:text-primary transition-colors"
-                style={{ textDecoration: 'none' }}
-              >
-                <IconMail />
-                <span className="font-lato" style={{ fontSize: '13px', letterSpacing: '0.3px' }}>
-                  [Correo electrónico]
-                </span>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
+      <DirectorioContacto
+        data={directorio['universidad-judicial']}
+        titulo="Información de contacto"
+        paddingBottom="56px"
+        borderBottom
+      />
 
       {/* Convocatorias */}
       <div id="convocatorias" className="max-w-content mx-auto site-px" style={{ paddingTop: '56px', paddingBottom: '80px' }}>

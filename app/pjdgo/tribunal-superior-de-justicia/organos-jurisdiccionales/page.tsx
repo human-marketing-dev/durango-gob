@@ -65,7 +65,7 @@ export default function Page() {
           Distritos Judiciales
         </h2>
         <p className="font-lato text-accent" style={{ fontSize: '15px', lineHeight: '1.7em', letterSpacing: '0.3px', maxWidth: '640px', marginBottom: '32px' }}>
-          Haz clic en cada marcador para ver la sede y dirección del distrito judicial.
+          Haz clic en cada marcador para ver la cabecera y los municipios que comprende cada distrito judicial.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-0" style={{ border: '1px solid #B8C0B8' }}>
@@ -105,19 +105,15 @@ export default function Page() {
                   </div>
                   <div>
                     <p className="font-lato text-primary" style={{ fontSize: '13px', fontWeight: '600', marginBottom: '2px', lineHeight: '1.3em' }}>
-                      {d.sede}
+                      {d.cabecera}
                     </p>
                     <p className="font-lato text-overlay" style={{ fontSize: '11px', letterSpacing: '0.5px', marginBottom: '6px' }}>
-                      {d.nombre}
+                      Distrito {d.numero}
                     </p>
                     <p className="font-lato text-accent" style={{ fontSize: '12px', lineHeight: '1.55em', letterSpacing: '0.2px' }}>
-                      {d.direccion}
+                      <span className="text-overlay uppercase" style={{ fontSize: '10px', letterSpacing: '1px', display: 'block', marginBottom: '2px' }}>Municipios que comprende</span>
+                      {d.municipios.join(', ')}
                     </p>
-                    {d.telefono && (
-                      <p className="font-lato text-overlay" style={{ fontSize: '12px', marginTop: '4px' }}>
-                        {d.telefono}
-                      </p>
-                    )}
                   </div>
                 </div>
               </div>

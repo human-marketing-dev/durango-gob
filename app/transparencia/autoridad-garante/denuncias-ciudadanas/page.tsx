@@ -4,7 +4,7 @@ import DenunciaForm from '@/components/denuncia-form'
 
 export const metadata: Metadata = {
   title: 'Denuncias Ciudadanas — Autoridad Garante — Poder Judicial del Estado de Durango',
-  description: 'Presenta tu denuncia ciudadana ante el Instituto Duranguense de Acceso a la Información Pública y Protección de Datos Personales.',
+  description: 'Presenta una denuncia ciudadana por el incumplimiento de las obligaciones de transparencia del Poder Judicial del Estado de Durango.',
 }
 
 export default function Page() {
@@ -39,7 +39,7 @@ export default function Page() {
           Denuncias Ciudadanas
         </h1>
         <p className="font-lato text-accent" style={{ fontSize: '16px', lineHeight: '1.7em', letterSpacing: '0.3px', maxWidth: '680px' }}>
-          Cualquier persona puede presentar una denuncia ante el Poder Judicial del Estado de Durango por incumplimiento de obligaciones en materia de transparencia, acceso a la información o protección de datos personales.
+          Este medio está destinado exclusivamente a la presentación de denuncias ciudadanas por el incumplimiento de las obligaciones de transparencia del Poder Judicial del Estado de Durango. Cualquier persona puede presentar una denuncia cuando advierta la falta de cumplimiento de dichas obligaciones.
         </p>
       </div>
 
@@ -66,11 +66,9 @@ export default function Page() {
                 </p>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {[
-                    'Negativa de acceso a información pública',
-                    'Incumplimiento de obligaciones de transparencia',
-                    'Entrega de información incompleta o incorrecta',
-                    'Violaciones al derecho de protección de datos personales',
-                    'Conductas irregulares de servidores públicos',
+                    'Falta de publicación de la información pública de oficio',
+                    'Información de transparencia incompleta, desactualizada o incorrecta',
+                    'Incumplimiento de las obligaciones de transparencia establecidas en la ley',
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <span style={{ width: '5px', height: '5px', background: '#1B1A19', borderRadius: '50%', flexShrink: 0, marginTop: '7px' }} />

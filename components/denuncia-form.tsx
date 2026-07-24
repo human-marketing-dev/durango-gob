@@ -37,15 +37,6 @@ function IconCheck() {
   )
 }
 
-const TIPOS = [
-  'Incumplimiento de obligaciones de transparencia',
-  'Negativa de acceso a la información pública',
-  'Entrega de información incompleta o incorrecta',
-  'Violación al derecho de protección de datos personales',
-  'Conducta irregular de servidor público',
-  'Otra',
-]
-
 const labelStyle: React.CSSProperties = {
   display: 'block',
   fontFamily: 'var(--font-lato)',
@@ -162,41 +153,17 @@ export default function DenunciaForm() {
 
       {/* Datos personales (condicional) */}
       {!anonima && (
-        <>
-          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: '16px' }}>
-            <div>
-              <label style={labelStyle}>Nombre completo <span style={{ color: '#991B1B' }}>*</span></label>
-              <input required={!anonima} type="text" placeholder="Tu nombre completo" style={inputStyle} />
-            </div>
-            <div>
-              <label style={labelStyle}>Correo electrónico <span style={{ color: '#991B1B' }}>*</span></label>
-              <input required={!anonima} type="email" placeholder="correo@ejemplo.com" style={inputStyle} />
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: '16px' }}>
+          <div>
+            <label style={labelStyle}>Nombre completo <span style={{ color: '#991B1B' }}>*</span></label>
+            <input required={!anonima} type="text" placeholder="Tu nombre completo" style={inputStyle} />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: '16px' }}>
-            <div>
-              <label style={labelStyle}>Teléfono</label>
-              <input type="tel" placeholder="(618) 000-0000" style={inputStyle} />
-            </div>
-            <div>
-              <label style={labelStyle}>Domicilio</label>
-              <input type="text" placeholder="Ciudad, Estado" style={inputStyle} />
-            </div>
+          <div>
+            <label style={labelStyle}>Correo electrónico <span style={{ color: '#991B1B' }}>*</span></label>
+            <input required={!anonima} type="email" placeholder="correo@ejemplo.com" style={inputStyle} />
           </div>
-        </>
+        </div>
       )}
-
-      {/* Tipo de denuncia */}
-      <div>
-        <label style={labelStyle}>Tipo de denuncia <span style={{ color: '#991B1B' }}>*</span></label>
-        <select
-          required
-          style={{ ...inputStyle, appearance: 'none', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666968' stroke-width='2'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', paddingRight: '32px' }}
-        >
-          <option value="">Selecciona una opción</option>
-          {TIPOS.map(t => <option key={t} value={t}>{t}</option>)}
-        </select>
-      </div>
 
       {/* Servidor público o área denunciada */}
       <div>

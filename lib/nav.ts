@@ -117,6 +117,7 @@ export const nav: NavEntry[] = [
     href: '/recursos',
     children: [
       { label: 'Marco Normativo', href: '/recursos/marco-normativo' },
+      { label: 'Listas de Acuerdos', href: '/recursos/acuerdos-del-consejo' },
       { label: 'Organigrama Institucional', href: '/recursos/organigrama-institucional' },
       { label: 'Directorio', href: '/recursos/directorio' },
       { label: 'Calendario', href: '/recursos/calendario' },

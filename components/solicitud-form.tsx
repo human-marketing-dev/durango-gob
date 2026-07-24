@@ -142,19 +142,13 @@ export default function SolicitudForm() {
         </div>
       </div>
 
-      {/* Teléfono + Tipo */}
-      <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: '16px' }}>
-        <div>
-          <label style={labelStyle}>Teléfono</label>
-          <input type="tel" placeholder="(618) 000-0000" style={inputStyle} />
-        </div>
-        <div>
-          <label style={labelStyle}>Tipo de solicitud <span style={{ color: '#991B1B' }}>*</span></label>
-          <select required style={{ ...inputStyle, appearance: 'none', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666968' stroke-width='2'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', paddingRight: '32px' }}>
-            <option value="">Selecciona una opción</option>
-            {TIPOS.map(t => <option key={t} value={t}>{t}</option>)}
-          </select>
-        </div>
+      {/* Tipo de solicitud */}
+      <div>
+        <label style={labelStyle}>Tipo de solicitud <span style={{ color: '#991B1B' }}>*</span></label>
+        <select required style={{ ...inputStyle, appearance: 'none', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666968' stroke-width='2'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', paddingRight: '32px' }}>
+          <option value="">Selecciona una opción</option>
+          {TIPOS.map(t => <option key={t} value={t}>{t}</option>)}
+        </select>
       </div>
 
       {/* Descripción */}

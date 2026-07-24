@@ -1,77 +1,129 @@
 export interface Distrito {
+  /** Número para el marcador del mapa y el orden (1..13). */
   id: number
-  nombre: string
-  sede: string
-  direccion: string
-  telefono?: string
+  /** Ordinal oficial, tal cual la tabla: 'Primero' … 'Décimo Tercero'. */
+  numero: string
+  /** Cabecera del distrito (columna del medio de la tabla oficial). */
+  cabecera: string
+  /** Municipios que comprende, con los nombres EXACTOS de la fuente oficial. */
+  municipios: string[]
   lat: number
   lng: number
 }
 
+/**
+ * Fuente de verdad: tabla oficial de los 13 Distritos Judiciales del Estado de
+ * Durango. Los nombres de municipios se copian exactamente (acentos incluidos);
+ * no corregir.
+ *
+ * NOTA sobre coordenadas: lat/lng son la ubicación aproximada de cada cabecera
+ * municipal, solo para colocar el marcador en el mapa (no vienen en la tabla
+ * oficial). Conviene verificarlas visualmente; las más remotas (Topia, Santa
+ * María del Oro) son las más propensas a requerir ajuste.
+ */
 export const distritos: Distrito[] = [
   {
     id: 1,
-    nombre: 'Primer Distrito Judicial',
-    sede: 'Durango',
-    direccion: 'C. Zaragoza esq. con 5 de Febrero S/N, Zona Centro, Durango, Dgo.',
-    telefono: '(618) 811 4712',
+    numero: 'Primero',
+    cabecera: 'Durango',
+    municipios: ['Durango', 'El Mezquital', 'Tayoltita', 'San Dimas', 'Rafael Buelna', 'Guarisamey', 'Carboneras del Municipio de San Dimas'],
     lat: 24.0277,
     lng: -104.6532,
   },
   {
     id: 2,
-    nombre: 'Segundo Distrito Judicial',
-    sede: 'Gómez Palacio',
-    direccion: 'Av. Francisco I. Madero, Gómez Palacio, Dgo.',
-    lat: 25.5671,
-    lng: -103.5006,
+    numero: 'Segundo',
+    cabecera: 'Lerdo',
+    municipios: ['Lerdo', 'Mapimí'],
+    lat: 25.5344,
+    lng: -103.5253,
   },
   {
     id: 3,
-    nombre: 'Tercer Distrito Judicial',
-    sede: 'Santiago Papasquiaro',
-    direccion: 'Centro, Santiago Papasquiaro, Dgo.',
-    lat: 25.0467,
-    lng: -105.4158,
+    numero: 'Tercero',
+    cabecera: 'Gómez Palacio',
+    municipios: ['Gómez Palacio', 'Tlahualilo'],
+    lat: 25.5686,
+    lng: -103.4956,
   },
   {
     id: 4,
-    nombre: 'Cuarto Distrito Judicial',
-    sede: 'Canatlán',
-    direccion: 'Centro, Canatlán, Dgo.',
-    lat: 24.5167,
-    lng: -104.7833,
+    numero: 'Cuarto',
+    cabecera: 'Santiago Papasquiaro',
+    municipios: ['Santiago Papasquiaro', 'Tepehuanes', 'Guanaceví', 'Otáez'],
+    lat: 25.0447,
+    lng: -105.4181,
   },
   {
     id: 5,
-    nombre: 'Quinto Distrito Judicial',
-    sede: 'Nombre de Dios',
-    direccion: 'Centro, Nombre de Dios, Dgo.',
-    lat: 23.8500,
-    lng: -104.2167,
+    numero: 'Quinto',
+    cabecera: 'Canatlán',
+    municipios: ['Canatlán', 'Nuevo Ideal'],
+    lat: 24.5197,
+    lng: -104.7789,
   },
   {
     id: 6,
-    nombre: 'Sexto Distrito Judicial',
-    sede: 'El Salto',
-    direccion: 'Centro, El Salto, Pueblo Nuevo, Dgo.',
-    lat: 23.7833,
-    lng: -105.3667,
+    numero: 'Sexto',
+    cabecera: 'El Salto, P.N.',
+    municipios: ['El Salto, P.N.', 'San Dimas, con excepción de las poblaciones incluidas en el Primer Distrito'],
+    lat: 23.7828,
+    lng: -105.3606,
   },
   {
     id: 7,
-    nombre: 'Séptimo Distrito Judicial',
-    sede: 'Tepehuanes',
-    direccion: 'Centro, Tepehuanes, Dgo.',
-    lat: 25.3500,
-    lng: -105.7333,
+    numero: 'Séptimo',
+    cabecera: 'Topia',
+    municipios: ['Topia', 'Canelas'],
+    lat: 25.2122,
+    lng: -106.5719,
   },
   {
     id: 8,
-    nombre: 'Octavo Distrito Judicial',
-    sede: 'Tamazula',
-    direccion: 'Centro, Tamazula, Dgo.',
-    lat: 25.9633,
-    lng: -106.9736,
+    numero: 'Octavo',
+    cabecera: 'Guadalupe Victoria',
+    municipios: ['Guadalupe Victoria', 'Panuco de Coronado'],
+    lat: 24.4469,
+    lng: -104.1206,
+  },
+  {
+    id: 9,
+    numero: 'Noveno',
+    cabecera: 'Cuencamé',
+    municipios: ['Cuencamé', 'Peñón Blanco', 'Santa Clara', 'San Juan de Guadalupe', 'Simón Bolívar'],
+    lat: 24.8703,
+    lng: -103.6942,
+  },
+  {
+    id: 10,
+    numero: 'Décimo',
+    cabecera: 'Nazas',
+    municipios: ['Nazas', 'San Luis del Cordero', 'San Pedro del Gallo'],
+    lat: 25.2267,
+    lng: -104.1092,
+  },
+  {
+    id: 11,
+    numero: 'Décimo Primero',
+    cabecera: 'San Juan del Río',
+    municipios: ['San Juan del Río', 'Rodeo', 'Coneto de Comonfort'],
+    lat: 24.7847,
+    lng: -104.4553,
+  },
+  {
+    id: 12,
+    numero: 'Décimo Segundo',
+    cabecera: 'Santa María del Oro',
+    municipios: ['Santa María del Oro', 'Indé', 'Ocampo', 'San Bernardo', 'Hidalgo'],
+    lat: 25.9497,
+    lng: -105.3686,
+  },
+  {
+    id: 13,
+    numero: 'Décimo Tercero',
+    cabecera: 'Nombre de Dios',
+    municipios: ['Nombre de Dios', 'Súchil', 'Poanas', 'Vicente Guerrero'],
+    lat: 23.8497,
+    lng: -104.2372,
   },
 ]
