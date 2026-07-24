@@ -1,0 +1,38 @@
+// Esquema de la base de datos de sentencias del PJ del Estado de Durango.
+// Prisma 7 · generador prisma-client (ESM) · datasource Postgres (Neon).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// Una sentencia = un documento PDF publicado. La identidad única es
+/// expediente + fecha + instancia + docKey (el path/URL del PDF), porque un
+/// mismo expediente/fecha/instancia puede corresponder a resoluciones distintas.
+model Sentencia {
+  id              Int      @id @default(autoincrement())
+  anio            Int // año de reporte (columna AÑO del Excel)
+  trimestre       Int // 1..4
+  instancia       Int // 1..2
+  materia         String
+  tipoJuicio      String? // hay 1 fila sin tipo en el Excel
+  fechaResolucion DateTime @db.Date
+  expediente      String
+  salaJuzgado     String
+  sentido         String // sin la leyenda repetitiva "La versión pública..."
+  pdfPath         String? // path relativo tras /transparencia/, EXACTO (URLs conformes)
+  pdfUrlCompleta  String? // URL cruda sin normalizar (las URLs no conformes)
+  docKey          String // = pdfPath ?? pdfUrlCompleta; parte no-nula de la llave única
+  revisar         Boolean  @default(false) // anomalía detectada (fecha en texto, URL fuera de patrón, etc.)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([expediente, fechaResolucion, instancia, docKey])
+  @@index([materia])
+  @@index([anio, trimestre])
+  @@index([fechaResolucion])
+}

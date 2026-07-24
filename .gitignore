@@ -1,5 +1,13 @@
 node_modules/
 .next/
+
+# Cliente de Prisma generado (se regenera con `prisma generate`)
+/generated/
 .env
 .env.local
 .env*.local
+
+# Datos fuente (Excel de sentencias y futuros) — no se sirven ni se versionan
+data/*.xlsx
+# Reporte de anomalías (artefacto generado por db:validate)
+data/reporte-anomalias.json

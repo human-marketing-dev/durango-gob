@@ -109,6 +109,10 @@ export const nav: NavEntry[] = [
     ],
   },
   {
+    label: 'Sentencias',
+    href: '/sentencias',
+  },
+  {
     label: 'Recursos',
     href: '/recursos',
     children: [
