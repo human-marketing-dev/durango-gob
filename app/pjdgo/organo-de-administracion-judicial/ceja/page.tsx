@@ -214,31 +214,20 @@ export default function Page() {
       <div className="max-w-content mx-auto site-px" style={{ paddingTop: '56px', paddingBottom: '56px', borderBottom: '1px solid #B8C0B8' }}>
         <p className="font-lato text-overlay uppercase mb-3" style={{ fontSize: '11px', letterSpacing: '2px' }}>Dirección</p>
         <h2 className="font-monument text-primary" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.8rem)', fontWeight: '400', lineHeight: '1.2em', marginBottom: '28px' }}>
-          Directivos
+          Director General
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: '1px', background: '#B8C0B8' }}>
-          {[
-            { cargo: 'Director General', nombre: 'Lic. Héctor Ayón Nogueira', grado: '' },
-            { cargo: 'Subdirectora',     nombre: '[Nombre de Subdirectora]',      grado: '[Grado académico]' },
-            { cargo: 'Subdirectora',     nombre: '[Nombre de Subdirectora]',      grado: '[Grado académico]' },
-          ].map((p, i) => (
-            <div key={i} className="bg-white" style={{ padding: '28px' }}>
-              <div className="flex items-start gap-4">
-                <AvatarPlaceholder />
-                <div>
-                  <span className="font-lato text-overlay uppercase inline-block" style={{ fontSize: '9px', fontWeight: '600', letterSpacing: '1.5px', padding: '3px 8px', border: '1px solid #B8C0B8', marginBottom: '10px' }}>
-                    {p.cargo}
-                  </span>
-                  <p className="font-monument text-primary" style={{ fontSize: '0.95rem', fontWeight: '400', lineHeight: '1.3em', marginBottom: '4px' }}>
-                    {p.nombre}
-                  </p>
-                  <p className="font-lato text-accent" style={{ fontSize: '12px', lineHeight: '1.5em' }}>
-                    {p.grado}
-                  </p>
-                </div>
-              </div>
+        <div style={{ border: '1px solid #B8C0B8', padding: '28px', maxWidth: '440px' }}>
+          <div className="flex items-start gap-4">
+            <AvatarPlaceholder />
+            <div>
+              <span className="font-lato text-overlay uppercase inline-block" style={{ fontSize: '9px', fontWeight: '600', letterSpacing: '1.5px', padding: '3px 8px', border: '1px solid #B8C0B8', marginBottom: '10px' }}>
+                Director General
+              </span>
+              <p className="font-monument text-primary" style={{ fontSize: '0.95rem', fontWeight: '400', lineHeight: '1.3em' }}>
+                Lic. Héctor Ayón Nogueira
+              </p>
             </div>
-          ))}
+          </div>
         </div>
       </div>
 

@@ -29,12 +29,14 @@ export const STATUS_META: Record<PageStatus, { label: string; description: strin
   },
 }
 
-/** Páginas armadas cuyo contenido todavía trae marcadores del tipo `[Nombre del Director]`. */
+/**
+ * Páginas armadas a las que aún les faltan datos definitivos:
+ *  - universidad-judicial: correo y dirección pendientes de entrega del cliente.
+ *  - recursos-de-revision: textos y campos provisionales, pendientes de validación del cliente.
+ */
 const ARMADO: string[] = [
-  '/pjdgo/organo-de-administracion-judicial/ceja',
-  '/pjdgo/organo-de-administracion-judicial/indepu',
-  '/pjdgo/organo-de-administracion-judicial/cecofam',
   '/pjdgo/organo-de-administracion-judicial/universidad-judicial',
+  '/transparencia/autoridad-garante/recursos-de-revision',
 ]
 
 /** Páginas que sólo tienen el stub de «Contenido en construcción». */
@@ -53,19 +55,14 @@ const PENDIENTE: string[] = [
   '/pjdgo/organo-de-administracion-judicial',
   '/transparencia',
   '/transparencia/autoridad-garante',
-  '/transparencia/autoridad-garante/recursos-de-revision',
   '/transparencia/unidad-de-transparencia',
   '/transparencia/obligaciones',
   '/tramites-y-servicios',
   '/tramites-y-servicios/lista-de-peritos',
   '/tramites-y-servicios/registro-de-titulos-profesionales',
-  '/tramites-y-servicios/justicia-alternativa',
-  '/tramites-y-servicios/defensoria-publica',
   '/recursos',
   '/recursos/marco-normativo',
-  '/recursos/directorio',
   '/recursos/voluntariado',
-  '/recursos/correo-institucional',
   '/noticias',
 ]
 
