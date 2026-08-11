@@ -83,8 +83,8 @@ function Hero() {
   return (
     <section style={{ position: 'relative', height: '80vh', overflow: 'hidden', minHeight: '480px' }}>
       <Image
-        src="/dgo-hero-img%20(1).webp"
-        alt="Poder Judicial del Estado de Durango"
+        src="/edificio/poder-judicial-de-durango-edificio-esquina.webp"
+        alt="Edificio del Poder Judicial del Estado de Durango"
         fill
         priority
         sizes="100vw"
@@ -357,11 +357,11 @@ function Gallery() {
   return (
     <section style={{ position: 'relative', height: '60vh', minHeight: '400px', overflow: 'hidden', width: '100%' }}>
       <Image
-        src="/Prueba-DGO.webp"
-        alt="Poder Judicial del Estado de Durango"
+        src="/edificio/poder-judicial-durango-entrada-1.webp"
+        alt="Entrada del edificio del Poder Judicial del Estado de Durango"
         fill
         sizes="100vw"
-        style={{ objectFit: 'cover', objectPosition: 'center' }}
+        style={{ objectFit: 'cover', objectPosition: 'top' }}
       />
     </section>
   )
