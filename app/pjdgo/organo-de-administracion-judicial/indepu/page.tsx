@@ -4,7 +4,7 @@ import DirectorioContacto from '@/components/directorio-contacto'
 import { directorio } from '@/lib/directorio'
 
 export const metadata: Metadata = {
-  title: 'Instituto de Defensoría Pública (INDEPU) — Órgano de Administración Judicial — PJDGO',
+  title: 'Instituto de Defensoría Pública (INDEPU) — Órgano de Administración — PJDGO',
   description: 'El INDEPU presta asesoría, defensa y representación legal gratuita a gobernados que no cuentan con capacidad económica para cubrir los honorarios de un defensor particular.',
 }
 
@@ -39,7 +39,7 @@ export default function Page() {
           {[
             { label: 'Inicio',                            href: '/' },
             { label: 'PJDGO',                             href: '/pjdgo' },
-            { label: 'Órgano de Administración Judicial',  href: '/pjdgo/organo-de-administracion-judicial/pleno-y-comisiones' },
+            { label: 'Órgano de Administración',  href: '/pjdgo/organo-de-administracion-judicial/pleno-y-comisiones' },
           ].map(({ label, href }) => (
             <span key={href} className="flex items-center gap-2">
               <Link
@@ -61,7 +61,7 @@ export default function Page() {
       {/* Header */}
       <div className="max-w-content mx-auto site-px" style={{ paddingTop: '64px', paddingBottom: '48px', borderBottom: '1px solid #B8C0B8' }}>
         <p className="font-lato text-overlay uppercase mb-3" style={{ fontSize: '11px', letterSpacing: '2px' }}>
-          Órgano de Administración Judicial
+          Órgano de Administración
         </p>
         <h1
           className="font-monument text-primary"
@@ -70,7 +70,7 @@ export default function Page() {
           Instituto de Defensoría Pública
         </h1>
         <p className="font-lato text-accent" style={{ fontSize: '16px', lineHeight: '1.7em', letterSpacing: '0.3px', maxWidth: '720px' }}>
-          Órgano auxiliar del Órgano de Administración Judicial del Poder Judicial del Estado de Durango que presta el servicio de asesoría, defensa y representación legal gratuita a los gobernados que no cuentan con la capacidad económica para cubrir los honorarios de un defensor particular.
+          Órgano auxiliar del Órgano de Administración del Poder Judicial del Estado de Durango que presta el servicio de asesoría, defensa y representación legal gratuita a los gobernados que no cuentan con la capacidad económica para cubrir los honorarios de un defensor particular.
         </p>
       </div>
 

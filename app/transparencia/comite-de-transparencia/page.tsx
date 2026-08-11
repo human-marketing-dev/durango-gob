@@ -338,7 +338,7 @@ export default function Page() {
           <div className="bg-white overflow-hidden" style={{ minHeight: '240px' }}>
             <iframe
               title="Ubicación Unidad de Transparencia"
-              src="https://maps.google.com/maps?q=Zaragoza+esq+5+de+Febrero,+Centro,+Durango,+Mexico&output=embed&z=16"
+              src="https://maps.google.com/maps?q=Tribunal+Superior+de+Justicia+del+Estado+de+Durango,+Durango&z=17&output=embed"
               width="100%"
               height="100%"
               style={{ border: 'none', display: 'block', minHeight: '240px' }}

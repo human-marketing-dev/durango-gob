@@ -4,7 +4,7 @@ import DirectorioContacto from '@/components/directorio-contacto'
 import { directorio } from '@/lib/directorio'
 
 export const metadata: Metadata = {
-  title: 'Centro de Convivencia Familiar (CECOFAM) — Órgano de Administración Judicial — PJDGO',
+  title: 'Centro de Convivencia Familiar (CECOFAM) — Órgano de Administración — PJDGO',
   description: 'El CECOFAM facilita la convivencia de niñas, niños y adolescentes con su padre o madre no custodio en los casos determinados por resolución judicial.',
 }
 
@@ -20,7 +20,7 @@ export default function Page() {
           {[
             { label: 'Inicio',                            href: '/' },
             { label: 'PJDGO',                             href: '/pjdgo' },
-            { label: 'Órgano de Administración Judicial',  href: '/pjdgo/organo-de-administracion-judicial/pleno-y-comisiones' },
+            { label: 'Órgano de Administración',  href: '/pjdgo/organo-de-administracion-judicial/pleno-y-comisiones' },
           ].map(({ label, href }) => (
             <span key={href} className="flex items-center gap-2">
               <Link href={href} className="font-lato text-overlay hover:text-primary transition-colors" style={{ fontSize: '12px', letterSpacing: '0.3px', textDecoration: 'none' }}>
@@ -36,13 +36,13 @@ export default function Page() {
       {/* Header */}
       <div className="max-w-content mx-auto site-px" style={{ paddingTop: '64px', paddingBottom: '48px', borderBottom: '1px solid #B8C0B8' }}>
         <p className="font-lato text-overlay uppercase mb-3" style={{ fontSize: '11px', letterSpacing: '2px' }}>
-          Órgano de Administración Judicial
+          Órgano de Administración
         </p>
         <h1 className="font-monument text-primary" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: '400', letterSpacing: '0.5px', lineHeight: '1.1em', marginBottom: '20px' }}>
           Centro de Convivencia Familiar
         </h1>
         <p className="font-lato text-accent" style={{ fontSize: '16px', lineHeight: '1.7em', letterSpacing: '0.3px', maxWidth: '720px' }}>
-          Órgano administrativo con autonomía técnica y operativa del Órgano de Administración Judicial del Poder Judicial del Estado de Durango, cuyo objeto es facilitar la convivencia de niñas, niños y adolescentes con su padre o madre no custodio o familia extensa.
+          Órgano administrativo con autonomía técnica y operativa del Órgano de Administración del Poder Judicial del Estado de Durango, cuyo objeto es facilitar la convivencia de niñas, niños y adolescentes con su padre o madre no custodio o familia extensa.
         </p>
       </div>
 
@@ -66,7 +66,7 @@ export default function Page() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: '#B8C0B8', alignSelf: 'start' }}>
             {[
               { titulo: 'Tipo de órgano', valor: 'Administrativo con autonomía técnica y operativa' },
-              { titulo: 'Adscripción', valor: 'Órgano de Administración Judicial del Poder Judicial del Estado de Durango' },
+              { titulo: 'Adscripción', valor: 'Órgano de Administración del Poder Judicial del Estado de Durango' },
               { titulo: 'Población objetivo', valor: 'Niñas, niños y adolescentes y sus familias' },
               { titulo: 'Marco normativo', valor: 'Ley, Reglamento, acuerdos generales, Ley General de Derechos de NNA y tratados internacionales' },
             ].map(item => (

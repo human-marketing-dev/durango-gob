@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Pleno y Comisiones — Órgano de Administración Judicial — Poder Judicial del Estado de Durango',
-  description: 'Comisionados del Pleno del Órgano de Administración Judicial del Estado de Durango.',
+  title: 'Pleno y Comisiones — Órgano de Administración — Poder Judicial del Estado de Durango',
+  description: 'Comisionados del Pleno del Órgano de Administración del Estado de Durango.',
 }
 
 interface Comisionado {
@@ -104,7 +104,7 @@ export default function Page() {
           {[
             { label: 'Inicio', href: '/' },
             { label: 'PJDGO', href: '/pjdgo' },
-            { label: 'Órgano de Administración Judicial', href: '/pjdgo/organo-de-administracion-judicial' },
+            { label: 'Órgano de Administración', href: '/pjdgo/organo-de-administracion-judicial' },
           ].map(({ label, href }) => (
             <span key={href} className="flex items-center gap-2">
               <Link href={href} className="font-lato text-overlay hover:text-primary transition-colors" style={{ fontSize: '12px', letterSpacing: '0.3px', textDecoration: 'none' }}>{label}</Link>
@@ -117,12 +117,12 @@ export default function Page() {
 
       {/* Header */}
       <div className="max-w-content mx-auto site-px" style={{ paddingTop: '64px', paddingBottom: '48px', borderBottom: '1px solid #B8C0B8' }}>
-        <p className="font-lato text-overlay uppercase mb-3" style={{ fontSize: '11px', letterSpacing: '2px' }}>Órgano de Administración Judicial</p>
+        <p className="font-lato text-overlay uppercase mb-3" style={{ fontSize: '11px', letterSpacing: '2px' }}>Órgano de Administración</p>
         <h1 className="font-monument text-primary" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: '400', letterSpacing: '0.5px', lineHeight: '1.1em', marginBottom: '20px' }}>
           Pleno y Comisiones
         </h1>
         <p className="font-lato text-accent" style={{ fontSize: '16px', lineHeight: '1.7em', letterSpacing: '0.3px', maxWidth: '680px' }}>
-          El Pleno del Órgano de Administración Judicial está integrado por cinco comisionados, cada uno responsable de un área estratégica para la administración y el desarrollo del Poder Judicial del Estado de Durango.
+          El Pleno del Órgano de Administración está integrado por cinco comisionados, cada uno responsable de un área estratégica para la administración y el desarrollo del Poder Judicial del Estado de Durango.
         </p>
       </div>
 

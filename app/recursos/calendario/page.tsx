@@ -66,7 +66,7 @@ const CAL_DATA: Record<number, Entry[]> = {
     e('inhabil', 'Aniversario de la Revolución Mexicana (en sustitución del 20 de noviembre)', '2026-11-16'),
     e('inhabil', 'Navidad',                                                       '2026-12-25'),
     // Suspensión de labores
-    e('suspension', 'Acuerdo del Pleno del Órgano de Administración Judicial',    '2026-01-02'),
+    e('suspension', 'Acuerdo del Pleno del Órgano de Administración',    '2026-01-02'),
     e('suspension', 'Semana Mayor',                                               ['2026-03-30', '2026-04-03']),
     e('suspension', 'Día de la Madre',                                            '2026-05-10'),
     e('suspension', 'Día de los Fieles Difuntos',                                 '2026-11-02'),
@@ -227,6 +227,22 @@ export default function Page() {
         <p className="font-lato text-accent" style={{ fontSize: '16px', lineHeight: '1.7em', letterSpacing: '0.3px', maxWidth: '640px' }}>
           Calendario oficial del Poder Judicial del Estado de Durango. Incluye días inhábiles, suspensiones de labores, periodos vacacionales y días correspondientes al personal sindicalizado.
         </p>
+
+        {/* Descarga PDF */}
+        <a
+          href="/Calendario-2026.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 font-lato transition-colors hover:bg-primary hover:text-white"
+          style={{ fontSize: '13px', fontWeight: 500, letterSpacing: '0.3px', padding: '12px 20px', border: '1px solid #1B1A19', color: '#1B1A19', textDecoration: 'none', whiteSpace: 'nowrap', marginTop: '24px' }}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Descargar calendario {year} (PDF)
+        </a>
 
         {/* Legend */}
         <div className="flex flex-wrap gap-3 mt-8">

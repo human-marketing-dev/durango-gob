@@ -86,7 +86,7 @@ export default function Page() {
           Cartas de Antecedentes Penales
         </h1>
         <p className="font-lato text-accent" style={{ fontSize: '16px', lineHeight: '1.7em', letterSpacing: '0.3px', maxWidth: '680px' }}>
-          Las cartas de antecedentes penales se solicitan de manera presencial en la Dirección de Archivo del Órgano de Administración Judicial del Poder Judicial del Estado de Durango, de lunes a viernes, en un horario de las 9:00 a las 15:00 horas.
+          Las cartas de antecedentes penales se solicitan de manera presencial en la Dirección de Archivo del Órgano de Administración del Poder Judicial del Estado de Durango, de lunes a viernes, en un horario de las 9:00 a las 15:00 horas.
         </p>
       </div>
 

@@ -114,6 +114,23 @@ const plenoRegional: Miembro[] = [
   },
 ]
 
+const plenoUnitariasRegionales: Miembro[] = [
+  {
+    nombre:   'Lic. Gerardo Lara Pérez',
+    cargo:    'Magistrado de la Sala Civil Unitaria Regional',
+    telefono: '871 456 58 10',
+    ext:      '65810',
+    correo:   'civilunitariagp@pjdgo.gob.mx',
+  },
+  {
+    nombre:   'Lic. Miguel Ángel Quiñones Orozco',
+    cargo:    'Magistrado de la Sala Penal Unitaria Regional',
+    telefono: '871 456 58 08',
+    ext:      '65808',
+    correo:   'penalunitariagp@pjdgo.gob.mx',
+  },
+]
+
 function AvatarPlaceholder({ large = false }: { large?: boolean }) {
   const size = large ? 56 : 36
   return (
@@ -285,6 +302,13 @@ export default function Page() {
             Palacio de Justicia (5° piso), Calle Morelos No. 326 Nte., C.P. 35000, Gómez Palacio, Dgo. Los magistrados de esta sala sesionan de forma regional.
           </p>
           <MemberGrid members={plenoRegional} />
+        </div>
+
+        <div style={{ marginTop: '56px' }}>
+          <p className="font-lato text-overlay uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '2px' }}>
+            Salas Unitarias Regionales — Gómez Palacio
+          </p>
+          <MemberGrid members={plenoUnitariasRegionales} />
         </div>
 
       </div>

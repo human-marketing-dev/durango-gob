@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Centro Estatal de Justicia Alternativa (CEJA) — Órgano de Administración Judicial — PJDGO',
+  title: 'Centro Estatal de Justicia Alternativa (CEJA) — Órgano de Administración — PJDGO',
   description: 'El CEJA ofrece mecanismos alternativos de solución de controversias como mediación, conciliación, arbitraje y justicia restaurativa de forma gratuita.',
 }
 
@@ -109,7 +109,7 @@ export default function Page() {
           {[
             { label: 'Inicio',                            href: '/' },
             { label: 'PJDGO',                             href: '/pjdgo' },
-            { label: 'Órgano de Administración Judicial',  href: '/pjdgo/organo-de-administracion-judicial/pleno-y-comisiones' },
+            { label: 'Órgano de Administración',  href: '/pjdgo/organo-de-administracion-judicial/pleno-y-comisiones' },
           ].map(({ label, href }) => (
             <span key={href} className="flex items-center gap-2">
               <Link href={href} className="font-lato text-overlay hover:text-primary transition-colors" style={{ fontSize: '12px', letterSpacing: '0.3px', textDecoration: 'none' }}>
@@ -125,13 +125,13 @@ export default function Page() {
       {/* Header */}
       <div className="max-w-content mx-auto site-px" style={{ paddingTop: '64px', paddingBottom: '48px', borderBottom: '1px solid #B8C0B8' }}>
         <p className="font-lato text-overlay uppercase mb-3" style={{ fontSize: '11px', letterSpacing: '2px' }}>
-          Órgano de Administración Judicial
+          Órgano de Administración
         </p>
         <h1 className="font-monument text-primary" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: '400', letterSpacing: '0.5px', lineHeight: '1.1em', marginBottom: '20px' }}>
           Centro Estatal de Justicia Alternativa
         </h1>
         <p className="font-lato text-accent" style={{ fontSize: '16px', lineHeight: '1.7em', letterSpacing: '0.3px', maxWidth: '720px', marginBottom: '20px' }}>
-          Órgano Auxiliar del Órgano de Administración Judicial encargado de ofrecer Mecanismos Alternativos de Solución de Controversias, aplicados por personas facilitadoras certificadas, para que las personas puedan resolver sus controversias mediante el diálogo de una manera ágil, sencilla y flexible.
+          Órgano Auxiliar del Órgano de Administración encargado de ofrecer Mecanismos Alternativos de Solución de Controversias, aplicados por personas facilitadoras certificadas, para que las personas puedan resolver sus controversias mediante el diálogo de una manera ágil, sencilla y flexible.
         </p>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#F4F6F4', padding: '8px 16px', border: '1px solid #B8C0B8' }}>
           <span className="font-lato text-primary" style={{ fontSize: '13px', fontWeight: '600' }}>Servicios completamente gratuitos</span>

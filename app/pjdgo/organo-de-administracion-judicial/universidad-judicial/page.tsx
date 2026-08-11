@@ -5,7 +5,7 @@ import DirectorioContacto from '@/components/directorio-contacto'
 import { directorio } from '@/lib/directorio'
 
 export const metadata: Metadata = {
-  title: 'Universidad Judicial — Órgano de Administración Judicial — PJDGO',
+  title: 'Universidad Judicial — Órgano de Administración — PJDGO',
   description: 'La Universidad Judicial del Poder Judicial del Estado de Durango fortalece la excelencia en la impartición de justicia mediante formación, capacitación, evaluación y certificación.',
 }
 
@@ -78,7 +78,7 @@ export default function Page() {
           {[
             { label: 'Inicio',                           href: '/' },
             { label: 'PJDGO',                            href: '/pjdgo' },
-            { label: 'Órgano de Administración Judicial', href: '/pjdgo/organo-de-administracion-judicial/pleno-y-comisiones' },
+            { label: 'Órgano de Administración', href: '/pjdgo/organo-de-administracion-judicial/pleno-y-comisiones' },
           ].map(({ label, href }) => (
             <span key={href} className="flex items-center gap-2">
               <Link
@@ -102,7 +102,7 @@ export default function Page() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-end">
           <div className="lg:col-span-2">
             <p className="font-lato text-overlay uppercase mb-3" style={{ fontSize: '11px', letterSpacing: '2px' }}>
-              Órgano de Administración Judicial
+              Órgano de Administración
             </p>
             <h1
               className="font-monument text-primary"

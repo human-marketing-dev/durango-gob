@@ -57,7 +57,7 @@ export const nav: NavEntry[] = [
         ],
       },
       {
-        label: 'Órgano de Administración Judicial',
+        label: 'Órgano de Administración',
         children: [
           { label: 'Pleno y Comisiones', href: '/pjdgo/organo-de-administracion-judicial/pleno-y-comisiones' },
           { label: 'Centro Estatal de Justicia Alternativa (CEJA)', href: '/pjdgo/organo-de-administracion-judicial/ceja' },
@@ -119,7 +119,7 @@ export const nav: NavEntry[] = [
       { label: 'Marco Normativo', href: '/recursos/marco-normativo' },
       { label: 'Listas de Acuerdos', href: '/recursos/acuerdos-del-consejo' },
       { label: 'Organigrama Institucional', href: '/recursos/organigrama-institucional' },
-      { label: 'Directorio', href: '/recursos/directorio' },
+      { label: 'Directorio de Contacto', href: '/recursos/directorio' },
       { label: 'Calendario', href: '/recursos/calendario' },
       { label: 'Estadística', href: '/recursos/estadistica' },
       { label: 'Voluntariado', href: '/recursos/voluntariado' },

@@ -177,7 +177,7 @@ const institutions = [
     href: '/pjdgo/tribunal-justicia-penal-adolescentes',
   },
   {
-    name: 'Órgano de Administración Judicial',
+    name: 'Órgano de Administración',
     img: '/DURANGO-GOB_Administracion-Judicial-scaled.webp',
     href: '/pjdgo/organo-de-administracion-judicial',
   },
