@@ -58,7 +58,6 @@ const PENDIENTE: string[] = [
   '/transparencia/unidad-de-transparencia',
   '/transparencia/obligaciones',
   '/tramites-y-servicios',
-  '/tramites-y-servicios/lista-de-peritos',
   '/tramites-y-servicios/registro-de-titulos-profesionales',
   '/recursos',
   '/recursos/marco-normativo',
