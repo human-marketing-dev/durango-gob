@@ -60,7 +60,6 @@ const PENDIENTE: string[] = [
   '/tramites-y-servicios',
   '/tramites-y-servicios/registro-de-titulos-profesionales',
   '/recursos',
-  '/recursos/marco-normativo',
   '/recursos/voluntariado',
   '/noticias',
 ]
