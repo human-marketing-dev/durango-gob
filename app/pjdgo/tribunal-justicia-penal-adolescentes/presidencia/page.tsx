@@ -140,9 +140,9 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1px', background: '#B8C0B8' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1px' }}>
           {resto.map((m, i) => (
-            <div key={i} className="bg-white flex flex-col">
+            <div key={i} className="bg-white flex flex-col" style={{ boxShadow: '0 0 0 1px #B8C0B8' }}>
               <AvatarPlaceholder />
               <div style={{ padding: '18px 18px 22px' }}>
                 <p className="font-sans text-primary" style={{ fontSize: '14px', fontWeight: '500', lineHeight: '1.3em', marginBottom: '6px' }}>{m.nombre}</p>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { fotoMagistrado } from '@/lib/fotos-magistrados'
 
 export const metadata: Metadata = {
   title: 'Pleno — Tribunal Superior de Justicia — Poder Judicial del Estado de Durango',
@@ -131,8 +132,19 @@ const plenoUnitariasRegionales: Miembro[] = [
   },
 ]
 
-function AvatarPlaceholder({ large = false }: { large?: boolean }) {
+function AvatarPlaceholder({ nombre, large = false }: { nombre?: string; large?: boolean }) {
   const size = large ? 56 : 36
+  const foto = nombre ? fotoMagistrado(nombre) : null
+  if (foto) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={foto}
+        alt={nombre}
+        style={{ width: '100%', aspectRatio: '1/1', objectFit: 'cover', objectPosition: 'top', display: 'block', background: '#CACECF' }}
+      />
+    )
+  }
   return (
     <div style={{ width: '100%', aspectRatio: '1/1', background: '#CACECF', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="#9AA1A6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -170,10 +182,10 @@ function IconDownload() {
 
 function MemberGrid({ members }: { members: Miembro[] }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1px', background: '#B8C0B8' }}>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1px' }}>
       {members.map((m, i) => (
-        <div key={i} className="bg-white flex flex-col">
-          <AvatarPlaceholder />
+        <div key={i} className="bg-white flex flex-col" style={{ boxShadow: '0 0 0 1px #B8C0B8' }}>
+          <AvatarPlaceholder nombre={m.nombre} />
           <div style={{ padding: '18px 18px 22px' }}>
             <p className="font-sans text-primary" style={{ fontSize: '14px', fontWeight: '500', lineHeight: '1.3em', marginBottom: '6px' }}>
               {m.nombre}
@@ -256,7 +268,7 @@ export default function Page() {
         <p className="font-lato text-overlay uppercase mb-6" style={{ fontSize: '11px', letterSpacing: '2px' }}>Presidencia</p>
         <div className="flex flex-col sm:flex-row" style={{ border: '1px solid #B8C0B8', marginBottom: '56px' }}>
           <div className="w-full sm:w-48" style={{ flexShrink: 0 }}>
-            <AvatarPlaceholder large />
+            <AvatarPlaceholder nombre={presidente.nombre} large />
           </div>
           <div style={{ padding: '32px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <span className="font-lato text-white bg-primary uppercase inline-block" style={{ fontSize: '10px', fontWeight: '600', letterSpacing: '1.5px', padding: '4px 10px', marginBottom: '16px', alignSelf: 'flex-start' }}>

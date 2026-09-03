@@ -28,7 +28,7 @@ const sedes = [
     ciudad: 'Lerdo',
     direccion: 'Calle Azucenas s/n esq. con Azaleas, Col. Villa de las Flores, Lerdo, Dgo.',
     telefonos: ['871 715-38-57'],
-    correo: 'justiciaalternativa.lerdo@gmail.com',
+    correo: 'ceja-lerdo@pjdgo.gob.mx',
   },
 ]
 

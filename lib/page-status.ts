@@ -37,6 +37,7 @@ export const STATUS_META: Record<PageStatus, { label: string; description: strin
 const ARMADO: string[] = [
   '/pjdgo/organo-de-administracion-judicial/universidad-judicial',
   '/transparencia/autoridad-garante/recursos-de-revision',
+  '/pjdgo/tribunal-disciplina-judicial/quejas-y-denuncias',
 ]
 
 /** Páginas que sólo tienen el stub de «Contenido en construcción». */
@@ -47,7 +48,6 @@ const PENDIENTE: string[] = [
   '/pjdgo/tribunal-superior-de-justicia/vinculacion-atencion-ciudadana',
   '/pjdgo/tribunal-disciplina-judicial',
   '/pjdgo/tribunal-disciplina-judicial/evaluaciones-y-sanciones',
-  '/pjdgo/tribunal-disciplina-judicial/quejas-y-denuncias',
   '/pjdgo/tribunal-justicia-penal-adolescentes',
   '/pjdgo/tribunal-justicia-penal-adolescentes/sala-unitaria',
   '/pjdgo/tribunal-justicia-penal-adolescentes/comision-de-administracion',
@@ -101,7 +101,8 @@ export function allHrefs(): string[] {
     }
   }
   hrefs.push('/terminos-de-uso')
-  return [...new Set(hrefs)]
+  // Los enlaces externos del nav (p. ej. sitios oficiales) no son páginas del sitio.
+  return [...new Set(hrefs)].filter((h) => !/^https?:\/\//.test(h))
 }
 
 export function statusCounts(): Record<PageStatus, number> & { total: number } {

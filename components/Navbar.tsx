@@ -3,8 +3,39 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, type CSSProperties, type ReactNode } from 'react'
 import { nav, isNavSection, type NavEntry, type NavLeaf, type NavSection } from '@/lib/nav'
+
+// ── Enlace de nav: interno (Link) o externo (abre en pestaña nueva) ────────────
+
+const esExterno = (href: string) => /^https?:\/\//.test(href)
+
+function NavHref({
+  href,
+  onClick,
+  className,
+  style,
+  children,
+}: {
+  href: string
+  onClick?: () => void
+  className?: string
+  style?: CSSProperties
+  children: ReactNode
+}) {
+  if (esExterno(href)) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" onClick={onClick} className={className} style={style}>
+        {children}
+      </a>
+    )
+  }
+  return (
+    <Link href={href} onClick={onClick} className={className} style={style}>
+      {children}
+    </Link>
+  )
+}
 
 // ── Mega Menu (full-width, rendered at header level) ──────────────────────────
 
@@ -45,14 +76,14 @@ function MegaPanel({ entry, onClose }: { entry: NavEntry; onClose: () => void })
               <ul className="space-y-2.5">
                 {section.children.map(item => (
                   <li key={item.href}>
-                    <Link
+                    <NavHref
                       href={item.href}
                       onClick={onClose}
                       className="block font-lato text-sm text-overlay hover:text-primary transition-colors leading-snug"
                       style={{ letterSpacing: '0.3px' }}
                     >
                       {item.label}
-                    </Link>
+                    </NavHref>
                   </li>
                 ))}
               </ul>
@@ -63,7 +94,7 @@ function MegaPanel({ entry, onClose }: { entry: NavEntry; onClose: () => void })
         {leaves.length > 0 && (
           <div className="mt-8 pt-6 border-t border-secondary flex flex-wrap gap-x-8 gap-y-3">
             {leaves.map(leaf => (
-              <Link
+              <NavHref
                 key={leaf.href}
                 href={leaf.href}
                 onClick={onClose}
@@ -71,7 +102,7 @@ function MegaPanel({ entry, onClose }: { entry: NavEntry; onClose: () => void })
                 style={{ letterSpacing: '0.3px' }}
               >
                 {leaf.label}
-              </Link>
+              </NavHref>
             ))}
           </div>
         )}
@@ -89,7 +120,7 @@ function SimpleDropdown({ entry, onClose }: { entry: NavEntry; onClose: () => vo
       style={{ boxShadow: '0 8px 24px rgba(0,0,0,0.10)', animation: 'dropdown-in 160ms ease forwards' }}
     >
       {(entry.children as NavLeaf[]).map((item, i, arr) => (
-        <Link
+        <NavHref
           key={item.href}
           href={item.href}
           onClick={onClose}
@@ -97,7 +128,7 @@ function SimpleDropdown({ entry, onClose }: { entry: NavEntry; onClose: () => vo
           style={{ letterSpacing: '0.3px' }}
         >
           {item.label}
-        </Link>
+        </NavHref>
       ))}
     </div>
   )
@@ -158,14 +189,14 @@ function MobileItem({ entry }: { entry: NavEntry | NavSection }) {
             isNavSection(child) ? (
               <MobileItem key={child.label} entry={child} />
             ) : (
-              <Link
+              <NavHref
                 key={(child as NavLeaf).href}
                 href={(child as NavLeaf).href}
                 className="block font-lato text-sm text-accent px-8 py-2.5 hover:bg-blue-bg transition-colors border-b border-blue-bg"
                 style={{ letterSpacing: '0.3px' }}
               >
                 {(child as NavLeaf).label}
-              </Link>
+              </NavHref>
             )
           )}
         </div>

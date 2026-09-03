@@ -32,7 +32,8 @@ export const nav: NavEntry[] = [
           { label: 'Listas de Acuerdos de Primera y Segunda Instancia', href: '/pjdgo/tribunal-superior-de-justicia/listas-de-acuerdos' },
           { label: 'Agenda de Audiencias Oral Mercantil', href: '/pjdgo/tribunal-superior-de-justicia/agenda-audiencias-oral-mercantil' },
           { label: 'Agenda de Audiencias Sistema de Justicia Penal Oral', href: '/pjdgo/tribunal-superior-de-justicia/agenda-audiencias-penal-oral' },
-          { label: 'Justicia Digital', href: '/pjdgo/tribunal-superior-de-justicia/justicia-digital' },
+          // Oculto temporalmente a solicitud del cliente. La página sigue existiendo.
+          // { label: 'Justicia Digital', href: '/pjdgo/tribunal-superior-de-justicia/justicia-digital' },
           { label: 'Dirección de Vinculación y Atención Ciudadana', href: '/pjdgo/tribunal-superior-de-justicia/vinculacion-atencion-ciudadana' },
           { label: 'Contacto', href: '/pjdgo/tribunal-superior-de-justicia/contacto' },
         ],
@@ -54,6 +55,7 @@ export const nav: NavEntry[] = [
           { label: 'Comisión de Administración', href: '/pjdgo/tribunal-justicia-penal-adolescentes/comision-de-administracion' },
           { label: 'Juzgados Especializados', href: '/pjdgo/tribunal-justicia-penal-adolescentes/juzgados-especializados' },
           { label: 'Contacto', href: '/pjdgo/tribunal-justicia-penal-adolescentes/contacto' },
+          { label: 'Sitio Oficial', href: 'https://www.tjpa.gob.mx' },
         ],
       },
       {

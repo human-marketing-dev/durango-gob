@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { fotoMagistrado } from '@/lib/fotos-magistrados'
 
 export const metadata: Metadata = {
   title: 'Comité de Transparencia — Poder Judicial del Estado de Durango',
@@ -67,7 +68,18 @@ const comite: Miembro[] = [
 
 // ── Placeholder avatar ─────────────────────────────────────────────────────────
 
-function AvatarPlaceholder() {
+function AvatarPlaceholder({ nombre }: { nombre?: string }) {
+  const foto = nombre ? fotoMagistrado(nombre) : null
+  if (foto) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={foto}
+        alt={nombre}
+        style={{ width: '100%', aspectRatio: '1 / 1', objectFit: 'cover', objectPosition: 'top', display: 'block', background: '#CACECF' }}
+      />
+    )
+  }
   return (
     <div
       style={{
@@ -190,7 +202,7 @@ export default function Page() {
               style={{ border: '1px solid #B8C0B8' }}
             >
               <div className="w-full sm:w-44" style={{ flexShrink: 0 }}>
-                <AvatarPlaceholder />
+                <AvatarPlaceholder nombre={m.nombre} />
               </div>
               <div style={{ padding: '32px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <span
@@ -221,7 +233,7 @@ export default function Page() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" style={{ gap: '1px', background: '#B8C0B8' }}>
           {comite.filter(m => !m.presidente).map(m => (
             <div key={m.nombre} className="bg-white flex flex-col">
-              <AvatarPlaceholder />
+              <AvatarPlaceholder nombre={m.nombre} />
               <div style={{ padding: '20px 20px 24px' }}>
                 <span
                   className="font-lato text-overlay uppercase inline-block"

@@ -594,6 +594,7 @@ export const contactoOrganoAdministracion: OrganismoContacto = {
           nombre:   'Lic. Silvia Mayela Salinas Mares',
           cargo:    'Subdirectora del Centro Distrital de Justicia Alternativa en Lerdo',
           telefono: '871 715 38 57',
+          correo:   'ceja-lerdo@pjdgo.gob.mx',
         },
       ],
     },
@@ -679,8 +680,8 @@ export const contactoOrganoAdministracion: OrganismoContacto = {
           correo:  'serviciosgenerales@pjdgo.gob.mx',
         },
         {
-          nombre:  'Lic. Hilda Janeth Lucio Figueroa',
-          cargo:   'Subjefa de Control Patrimonial',
+          nombre:  'C. Ricardo Alonso Ceballos Aguirre',
+          cargo:   'Subjefe de Control Patrimonial',
           ext:     '172 / 188',
           correo:  'patrimonio1@pjdgo.gob.mx',
         },
